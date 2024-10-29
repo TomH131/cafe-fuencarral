@@ -16,3 +16,6 @@ class Reservation(models.Model):
         choices=NUMBER_OF_PEOPLE_CHOICES
     )
     date = models.DateField()
+    email = models.EmailField(max_length=200)
+    time = models.IntegerField()
+
