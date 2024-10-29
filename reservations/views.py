@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from reservations.models import Reservation
+from django.shortcuts import render, redirect
+from .forms import ReservationForm
 
-# Create your views here.
 def reservations_view(request):
-    return render(request, 'reservations/reservations.html')
-
-def Reservation(request):
-    class Meta:
-        model = Booking
-        fields = ['name', 'people', 'date']
+    if request.method == "POST":
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the new reservation to the database
+            return redirect('reservations_view')  # Redirect to the same page
+    else:
+        form = ReservationForm()
+    
+    return render(request, 'reservations/reservations.html', {'form': form})

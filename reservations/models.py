@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Reservation(models.Model):
-    # Define choices as a list of tuples
     NUMBER_OF_PEOPLE_CHOICES = [
         (1, "1"),
         (2, "2"),

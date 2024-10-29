@@ -18,7 +18,7 @@
                 <ul id="navbar">
                     <li>Home</li>
                     <li><a href="{% url 'menu:menu' %}">Menu</a></li>
-                    <li><a href="{% url 'reservations:reservations' %}">Reservations</a></li>
+                    <li><a href="{% url 'reservation:reservations' %}">Reservations</a></li>
                     <li>Contact us</li>
                 </ul>
             </nav>
@@ -27,7 +27,12 @@
 
     <main>
         <h2>Reservations</h2>
-        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Display form fields as paragraphs -->
+            <button type="submit">Submit Reservation</button>
+        </form>
+
     </main>
 
     <footer>
