@@ -44,25 +44,30 @@ main {
 }
 
 h2 {
-    padding: 10px;
+    padding-top: 10px;
     color: darkred;
+    width: 70%;
+    margin: auto;
 }
+
 h3 {
-    font-size: 100%;
+    font-size: 90%;
     margin-bottom: 10px;
+    color: darkred;
 }
 
 #reservation-form {
-    margin-left: 20px;
-    margin-right: 20px;
     padding: 10px;
     background-color: white;
     border-radius: 5%;
     text-align: center;
+    width: 70%;
+    margin: 20px auto;
 }
 
 label {
     padding: 5px;
+    font-size: 85%;
 }
 
 input,
@@ -100,14 +105,20 @@ footer {
     justify-content: space-evenly;
     width: 100%;
     padding: 5px;
+}
+
+#social-media a {
     color: gold;
 }
 
 /* Media query for tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
-    h2,
+    h2 {
+        width: 40%;
+    }
+    
     #reservation-form {
-        width: 50%;
-        margin: auto;
+        width: 40%;
+        margin: 20px auto;
     }
 }

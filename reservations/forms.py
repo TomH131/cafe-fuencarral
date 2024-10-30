@@ -7,5 +7,4 @@ class ReservationForm(forms.ModelForm):
         fields = ['people', 'date', 'time', 'name', 'email']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
         }

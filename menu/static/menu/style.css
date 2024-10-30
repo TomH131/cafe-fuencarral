@@ -62,5 +62,8 @@ footer {
     justify-content: space-evenly;
     width: 100%;
     padding: 5px;
+}
+
+#social-media a {
     color: gold;
 }
