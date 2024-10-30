@@ -29,7 +29,7 @@ header a {
 #spanish-cuisine {
     position: relative;
     background: url("images/spanish-cuisine.jpg") no-repeat center center/cover;
-    height: 15%;
+    height: 17%;
     color: gold;
     text-shadow: 
         -1px -1px 0 black,  
@@ -39,9 +39,18 @@ header a {
 }
 
 main {
-    background-color: gold;
+    background-color: white;
     padding: 10px;
     color: maroon;
+}
+
+#menu {
+    background-color: gold;
+    padding: 10px;
+    border-radius: 5%;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
 }
 
 h2 {
@@ -66,4 +75,12 @@ footer {
 
 #social-media a {
     color: gold;
+}
+
+/* Media query for tablets and larger (768px and up) */
+@media screen and (min-width: 768px) {   
+    #menu {
+        width: 40%;
+        margin: 20px auto;
+    }
 }
