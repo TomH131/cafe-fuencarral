@@ -11,11 +11,11 @@ class Reservation(models.Model):
         (6, "6"),
     ]
 
-    name = models.CharField(max_length=200)
     people = models.IntegerField(
         choices=NUMBER_OF_PEOPLE_CHOICES
     )
     date = models.DateField()
-    email = models.EmailField(max_length=200)
     time = models.IntegerField()
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
 

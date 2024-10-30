@@ -27,12 +27,14 @@
 
     <main>
         <h2>Reservations</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}  <!-- Display form fields as paragraphs -->
-            <button type="submit">Submit Reservation</button>
-        </form>
-
+        <section id="reservation-form">
+            <form method="post">
+                <h3>Please make your booking below</h3>
+                {% csrf_token %}
+                {{ form.as_p }} <!-- Display form fields as paragraphs -->
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     </main>
 
     <footer>

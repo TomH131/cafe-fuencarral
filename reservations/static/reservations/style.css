@@ -38,6 +38,58 @@ header a {
         1px 1px 0 black; 
 }
 
+main {
+    background-color: gold;
+    padding-bottom: 20px;
+}
+
+h2 {
+    padding: 10px;
+    color: darkred;
+}
+h3 {
+    font-size: 100%;
+    margin-bottom: 10px;
+}
+
+#reservation-form {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5%;
+    text-align: center;
+}
+
+label {
+    padding: 5px;
+}
+
+input,
+select {
+    margin: 5px;
+    width: 50%;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    height: 25px;
+}
+
+button {
+    background-color: darkred;
+    color: gold;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 30%;
+}
+
 footer {
     background-color: darkred
 }
@@ -49,4 +101,13 @@ footer {
     width: 100%;
     padding: 5px;
     color: gold;
+}
+
+/* Media query for tablets and larger (768px and up) */
+@media screen and (min-width: 768px) {
+    h2,
+    #reservation-form {
+        width: 50%;
+        margin: auto;
+    }
 }
