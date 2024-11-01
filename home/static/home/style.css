@@ -40,7 +40,6 @@ header a {
 
 main {
     background-color: white;
-    padding: 10px;
     color: maroon;
 }
 
@@ -56,6 +55,35 @@ main {
 h2,
 p {
     padding: 5px;
+}
+
+#home-images {
+    background-color: gold;
+    padding: 10px;
+}
+
+#paella {
+    background: url("images/paella-valenciana.jpg") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#patatas {
+    background: url("images/patatas-bravas.webp") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#tortilla {
+    background: url("images/tortilla.webp") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
 }
 
 footer {
@@ -79,5 +107,18 @@ footer {
     #introduction {
         width: 40%;
         margin: 20px auto;
+    }
+
+    #home-images {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    #paella,
+    #patatas,
+    #tortilla {
+        height: 200px;
+        width: 30%;
     }
 }
