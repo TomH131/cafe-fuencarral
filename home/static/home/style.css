@@ -86,6 +86,34 @@ p {
     border-radius: 5%;
 }
 
+#menu,
+#opening-hours,
+#socials {
+    background-color: gold;
+    padding: 10px;
+    border-radius: 5%;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+h2 {
+    padding: 5px;
+}
+
+.menu-item {
+    padding: 5px;
+}
+
+#contact-socials {
+    list-style: none;
+}
+
+#contact-socials a {
+    text-decoration: none;
+    color: darkred;
+}
+
 footer {
     background-color: darkred
 }
@@ -98,7 +126,7 @@ footer {
     padding: 5px;
 }
 
-#social-media a {
+footer a {
     color: gold;
 }
 
@@ -114,11 +142,17 @@ footer {
         justify-content: space-between;
     }
 
-
     #paella,
     #patatas,
     #tortilla {
         height: 200px;
         width: 30%;
+    }
+
+    #menu,
+    #opening-hours,
+    #socials {
+        width: 40%;
+        margin: 20px auto;
     }
 }
