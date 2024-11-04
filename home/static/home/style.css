@@ -40,8 +40,10 @@ header a {
 }
 
 main {
-    background-color: white;
+    background: url("images/background-image.avif");
     color: maroon;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #introduction {
@@ -92,7 +94,8 @@ p {
 #socials,
 #submission,
 #menu-link,
-#drinks-menu {
+#drinks-menu,
+#reservation-link {
     background-color: gold;
     padding: 10px;
     border-radius: 5%;
@@ -214,7 +217,8 @@ footer a {
     #socials,
     #submission,
     #menu-link,
-    #drinks-menu {
+    #drinks-menu,
+    #reservation-link {
         width: 40%;
         margin: 20px auto;
     }
