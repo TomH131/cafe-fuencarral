@@ -5,9 +5,12 @@ def reservations_view(request):
     if request.method == "POST":
         form = ReservationForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the new reservation to the database
-            return redirect('reservations_view')  # Redirect to the same page
+            form.save()
+            return redirect('reservation:submission')
     else:
         form = ReservationForm()
     
     return render(request, 'reservations/reservations.html', {'form': form})
+
+def submission_view(request):
+    return render(request, 'reservations/submission.html')

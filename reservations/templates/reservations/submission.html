@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cafe Fuencarral</title>
 
     {% load static %}
@@ -26,32 +27,22 @@
     </header>
 
     <main>
-        <section>
-            <div id="opening-hours">
-                <h2>Opening hours</h2>
-                <p>Monday - Saturday: 12:00 - 23:00</p>
-                <p>Kitchen closes 22:00</p>
+        <section id="submission">
+            <div>
+                <p>Your reservation has been confirmed.</p>
+                <p>We look forward to seeing you.</p>
             </div>
-        </section>
-        <section>
-            <div id="socials">
-                <h2>Social media</h2>
-                <p>Connect with us on our socials.</p>
-                <ul id="contact-socials">
-                    <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Facebook page (opens in a new tab)">Facebook</a>
-                    </li>
-                    <li><a href="https://x.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our X page (opens in a new tab)">Twitter</a>
-                    </li>
-                    <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Instagram page (opens in a new tab)">Instagram</a></li>
-                    <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Youtube page (opens in a new tab)">Youtube</a></li>
-                </ul>
+            <div>
+                <p>Please click <a href="{% url 'menu:menu' %}"><strong>here</strong></a> to see our exciting
+                    menu.</p>
             </div>
         </section>
 
+        <section id="home-images">
+            <div id="croquetas" class="images"></div>
+            <div id="melon" class="images"></div>
+            <div id="peppers" class="images"></div>
+        </section>
     </main>
 
     <footer>
