@@ -18,7 +18,8 @@ header a {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 95%;
     font-weight: bold;
     position: absolute;
@@ -57,7 +58,7 @@ p {
     padding: 5px;
 }
 
-#home-images {
+#home-images{
     background-color: gold;
     padding: 10px;
 }
@@ -89,7 +90,9 @@ p {
 #menu,
 #opening-hours,
 #socials,
-#submission {
+#submission,
+#menu-link,
+#drinks-menu {
     background-color: gold;
     padding: 10px;
     border-radius: 5%;
@@ -102,7 +105,32 @@ h2 {
     padding: 5px;
 }
 
-.menu-item {
+#pan {
+    background: url("images/pan-con-alioli.jpg") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#huevos {
+    background: url("images/huevos-rotos.jpg") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#pulpo {
+    background: url("images/pulpo-a-la-gallega.webp") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+.menu-item,
+.drinks.item {
     padding: 5px;
 }
 
@@ -148,7 +176,8 @@ footer {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 footer a {
@@ -172,7 +201,10 @@ footer a {
     #tortilla,
     #croquetas,
     #melon,
-    #peppers {
+    #peppers,
+    #pan,
+    #huevos,
+    #pulpo {
         height: 200px;
         width: 30%;
     }
@@ -180,7 +212,9 @@ footer a {
     #menu,
     #opening-hours,
     #socials,
-    #submission {
+    #submission,
+    #menu-link,
+    #drinks-menu {
         width: 40%;
         margin: 20px auto;
     }
