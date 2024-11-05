@@ -7,4 +7,6 @@ class ReservationForm(forms.ModelForm):
         fields = ['people', 'date', 'time', 'name', 'email', 'special_occasion']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
         }

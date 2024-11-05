@@ -3,14 +3,17 @@
     padding: 0;
 }
 
+main {
+    background: url("images/background-image.avif");
+    color: maroon;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Header */
 h1 {
     padding: 10px;
     font-size: 200%;
-}
-
-header a {
-    text-decoration: none;
-    color: gold;
 }
 
 #navbar {
@@ -24,7 +27,15 @@ header a {
     font-weight: bold;
     position: absolute;
     bottom: 0;
+}
 
+header a {
+    text-decoration: none;
+    color: gold;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
 }
 
 #spanish-cuisine {
@@ -39,14 +50,8 @@ header a {
         1px 1px 0 black; 
 }
 
-main {
-    background: url("images/background-image.avif");
-    color: maroon;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#introduction {
+/* Main content */
+.box {
     background-color: gold;
     padding: 10px;
     border-radius: 5%;
@@ -60,7 +65,7 @@ p {
     padding: 5px;
 }
 
-#home-images{
+.images{
     background-color: gold;
     padding: 10px;
 }
@@ -89,25 +94,6 @@ p {
     border-radius: 5%;
 }
 
-#menu,
-#opening-hours,
-#socials,
-#submission,
-#menu-link,
-#drinks-menu,
-#reservation-link {
-    background-color: gold;
-    padding: 10px;
-    border-radius: 5%;
-    text-align: center;
-    width: 80%;
-    margin: 20px auto;
-}
-
-h2 {
-    padding: 5px;
-}
-
 #pan {
     background: url("images/pan-con-alioli.jpg") no-repeat center center/cover;
     width: 80%;
@@ -132,6 +118,7 @@ h2 {
     border-radius: 5%;
 }
 
+/* menu */
 .menu-item,
 .drinks.item {
     padding: 5px;
@@ -161,6 +148,52 @@ h2 {
     border-radius: 5%;
 }
 
+/* reservation form */
+#reservation-form {
+    padding: 10px;
+    background-color: white;
+    border-radius: 5%;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+}
+
+label {
+    padding: 5px;
+    font-size: 85%;
+}
+
+input,
+select {
+    margin: 5px;
+    width: 50%;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    height: 25px;
+}
+
+button {
+    background-color: darkred;
+    color: gold;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 30%;
+}
+
+button:hover {
+    background-color: gold;
+    color: darkred;
+}
+
+/* Contact us page */
 #contact-socials {
     list-style: none;
 }
@@ -170,6 +203,7 @@ h2 {
     color: darkred;
 }
 
+/* Footer */
 footer {
     background-color: darkred
 }
@@ -189,12 +223,13 @@ footer a {
 
 /* Media query for tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {  
-    #introduction {
+    .box,
+    #reservation-form {
         width: 40%;
         margin: 20px auto;
     }
 
-    #home-images {
+    .images {
         display: flex;
         justify-content: space-between;
     }
@@ -210,16 +245,5 @@ footer a {
     #pulpo {
         height: 200px;
         width: 30%;
-    }
-
-    #menu,
-    #opening-hours,
-    #socials,
-    #submission,
-    #menu-link,
-    #drinks-menu,
-    #reservation-link {
-        width: 40%;
-        margin: 20px auto;
     }
 }
