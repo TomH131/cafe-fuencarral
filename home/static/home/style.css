@@ -48,6 +48,7 @@ header a {
         1px -1px 0 black,
         -1px 1px 0 black,
         1px 1px 0 black;
+    border-bottom: 4px solid darkred;
 }
 
 /* Main content */
@@ -218,6 +219,10 @@ footer a {
 
 /* Media query for tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
+
+    header a {
+        font-size: 140%;
+    }
 
     .box {
         width: 40%;
