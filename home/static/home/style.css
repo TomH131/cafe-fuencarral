@@ -149,15 +149,6 @@ p {
 }
 
 /* reservation form */
-#reservation-form {
-    padding: 10px;
-    background-color: white;
-    border-radius: 5%;
-    text-align: center;
-    width: 70%;
-    margin: auto;
-}
-
 label {
     padding: 5px;
     font-size: 85%;
@@ -228,8 +219,7 @@ footer a {
 /* Media query for tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
 
-    .box,
-    #reservation-form {
+    .box {
         width: 40%;
         margin: 20px auto;
     }
