@@ -29,14 +29,15 @@ class Reservation(models.Model):
         ("Anniversary", "Anniversary"),
     ]
 
-    people = models.IntegerField(
-        choices=NUMBER_OF_PEOPLE_CHOICES
-    )
+    people = models.IntegerField(choices=NUMBER_OF_PEOPLE_CHOICES)
     date = models.DateField()
     time = models.TimeField(choices=TIME_OF_DAY_CHOICES)
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    special_occasion = models.CharField(max_length=200, choices=SPECIAL_OCCASION_CHOICES, blank=True)
+    special_occasion = models.CharField(
+        max_length=200, 
+        choices=SPECIAL_OCCASION_CHOICES, 
+        blank=True)
 
     def __str__(self):
         return f"Reservation for {self.name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
