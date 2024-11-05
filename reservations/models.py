@@ -38,3 +38,5 @@ class Reservation(models.Model):
     email = models.EmailField(max_length=200)
     special_occasion = models.CharField(max_length=200, choices=SPECIAL_OCCASION_CHOICES, blank=True)
 
+    def __str__(self):
+        return f"Reservation for {self.name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
