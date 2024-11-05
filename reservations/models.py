@@ -23,13 +23,21 @@ class Reservation(models.Model):
         (time(21, 0), "21:00"),
     ]
 
+    SPECIAL_OCCASION_CHOICES = [
+        ("None", "None"),
+        ("Birthday", "Birthday"),
+        ("Anniversary", "Anniversary"),
+    ]
+
     people = models.IntegerField(
         choices=NUMBER_OF_PEOPLE_CHOICES
     )
     date = models.DateField()
     time = models.TimeField(
         choices=TIME_OF_DAY_CHOICES,
-        default=time(17, 0)  # Use datetime.time object here
+        default=time(17, 0)
     )
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200, default="example@example.com")
+    special_occasion = models.CharField(max_length=200, choices=SPECIAL_OCCASION_CHOICES)
+
