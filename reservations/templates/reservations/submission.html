@@ -31,7 +31,17 @@
             <div>
                 <h2>Booking confirmed</h2>
                 <p>We look forward to seeing you.</p>
+                {% if code %}
+                <p>Here is your reservation code: <strong>{{ code }}</strong></p>
+                <p>This code will be sent to you via email. Please make a note of it as it can be used to modify or
+                    cancel your reservation.</p>
+                {% else %}
+                <p>There was an issue generating your reservation code. Please contact us directly.</p>
+                {% endif %}
             </div>
+        </section>
+
+        <section class="box">
             <div>
                 <p>Click <a href="{% url 'menu:menu' %}"><strong>here</strong></a> to see our exciting
                     menu.</p>
