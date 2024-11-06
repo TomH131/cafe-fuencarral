@@ -18,3 +18,6 @@ class ReservationForm(forms.ModelForm):
         if selected_date < date.today():
             raise ValidationError("This date is in the past and cannot be selected")
         return selected_date
+
+class SearchForm(forms.Form):
+    code = forms.CharField() 

@@ -5,13 +5,13 @@ from .models import Reservation
 class ReservationAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Contact Information", {"fields": ["name", "email"]}),
-        ("Reservation", {"fields": ["date", "time", "people"]})
+        ("Reservation", {"fields": ["date", "time", "people", "code"]})
     ]
 
     list_display = ["date", "time", "people", "name"]
 
     list_filter = ["date"]
 
-    ordering = ["date", "time"]
+    # ordering = ["date", "time"]
 
 admin.site.register(Reservation, ReservationAdmin)

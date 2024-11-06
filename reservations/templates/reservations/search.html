@@ -30,16 +30,16 @@
         <section class="box">
             <h2>Reservations</h2>
             <form method="post">
-                <h3>Please make your booking below</h3>
+                <h3>Find your reservation</h3>
                 {% csrf_token %}
                 {{ form.as_p }} <!-- Display form fields as paragraphs -->
-                <button type="submit"><strong>Submit</strong></button>
+                <button type="submit"><strong>Search</strong></button>
             </form>
-        </section>
-
-        <section class="box">
-            <p>Click <a href="{% url 'reservation:search' %}"><strong>here</strong></a> if you need to modify or cancel
-                an existing reservation</p>
+            {% if reservations%}
+            {% for reservation in reservations%}
+            <h4>{{ reservation}}</h4>
+            {% endfor%}
+            {% endif%}
         </section>
     </main>
 

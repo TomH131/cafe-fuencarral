@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import time
+import random
+import string
 
 class Reservation(models.Model):
     NUMBER_OF_PEOPLE_CHOICES = [
@@ -38,6 +40,19 @@ class Reservation(models.Model):
         max_length=200, 
         choices=SPECIAL_OCCASION_CHOICES, 
         blank=True)
+    code = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f"Reservation for {self.name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
+
+    def save(self, *args, **kwargs):
+        self.code = generate_code()
+        super(Reservation, self).save(*args, **kwargs)
+
+def generate_code(length=8, prefix="FUE-"):
+    # Choose from uppercase letters and digits
+    characters = string.ascii_uppercase + string.digits
+    # Generate random characters for the specified length
+    random_code = ''.join(random.choice(characters) for _ in range(length))
+    # Return the code with the prefix
+    return prefix + random_code
