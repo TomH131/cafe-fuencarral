@@ -1,125 +1,84 @@
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe Fuencarral</title>
+{% block title %}Home{% endblock %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+{% block content %}
 
-</head>
+<main>
+    <section class="box">
+        <h2>Menu</h2>
+        <div class="menu-item">
+            <p><strong>Patatas Bravas</strong> </p>
+            <p>Fried potatoes in a spicy, tomato sauce.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Tortilla</strong></p>
+            <p>An omelette made with eggs and potatoes.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Padron peppers</strong></p>
+            <p>Fried peppers sprinkled with salt.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Croquettas de jamon</strong></p>
+            <p>Croquettes with ham.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Pan con alioli</strong></p>
+            <p>Bread with an alioli dip.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Melon con jamon</strong></p>
+            <p>Melon with slices of serrano ham.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Paella Valenciana</strong></p>
+            <p>Paella with chicken and rabbit.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Huevos rotos</strong></p>
+            <p>Fried egg with fried potatoes and chorizo.</p>
+        </div>
+        <div class="menu-item">
+            <p><strong>Pulpo a la Gallega</strong></p>
+            <p>Fresh octopus with fried potatoes</p>
+        </div>
+    </section>
 
-<body>
-    <header>
-        <section id="spanish-cuisine">
-            <h1><a href="{% url 'home:home' %}">Cafe Fuencarral</a></h1>
-            <nav>
-                <ul id="navbar">
-                    <li><a href="{% url 'home:home' %}">Home</a></li>
-                    <li><a href="{% url 'menu:menu' %}">Menu</a></li>
-                    <li><a href="{% url 'reservation:reservations' %}">Reservations</a></li>
-                    <li><a href="{% url 'contactus:contactus' %}">Contact us</a></li>
-                </ul>
-            </nav>
-        </section>
-    </header>
+    <section class="images">
+        <div id="pan" class="images"></div>
+        <div id="huevos" class="images"></div>
+        <div id="pulpo" class="images"></div>
+    </section>
 
-    <main>
-        <section class="box">
-            <h2>Menu</h2>
-            <div class="menu-item">
-                <p><strong>Patatas Bravas</strong> </p>
-                <p>Fried potatoes in a spicy, tomato sauce.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Tortilla</strong></p>
-                <p>An omelette made with eggs and potatoes.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Padron peppers</strong></p>
-                <p>Fried peppers sprinkled with salt.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Croquettas de jamon</strong></p>
-                <p>Croquettes with ham.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Pan con alioli</strong></p>
-                <p>Bread with an alioli dip.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Melon con jamon</strong></p>
-                <p>Melon with slices of serrano ham.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Paella Valenciana</strong></p>
-                <p>Paella with chicken and rabbit.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Huevos rotos</strong></p>
-                <p>Fried egg with fried potatoes and chorizo.</p>
-            </div>
-            <div class="menu-item">
-                <p><strong>Pulpo a la Gallega</strong></p>
-                <p>Fresh octopus with fried potatoes</p>
-            </div>
-        </section>
+    <section class="box">
+        <h2>Drinks Menu</h2>
+        <div class="drinks-item">
+            <h3><strong>Beer</strong></h3>
+            <p>Madri</p>
+            <p>San Miguel</p>
+        </div>
+        <div class="drinks-item">
+            <h3><strong>Wine</strong></h3>
+            <p>Red</p>
+            <p>White</p>
+            <p>Sangria</p>
+            <p>Tinto Verano</p>
+        </div>
+        <div class="drinks-item">
+            <h3><strong>Soft drinks</strong></h3>
+            <p>Still water</p>
+            <p>Orange juice</p>
+            <p>Fanta orange</p>
+            <p>Coca cola</p>
+        </div>
+    </section>
 
-        <section class="images">
-            <div id="pan" class="images"></div>
-            <div id="huevos" class="images"></div>
-            <div id="pulpo" class="images"></div>
-        </section>
+    <section class="box">
+        <h2>Want to book a table?</h2>
+        <p>Click <a href="{% url 'reservation:reservations' %}"><strong>here</strong></a> to book a reservation.</p>
+    </section>
+</main>
 
-        <section class="box">
-            <h2>Drinks Menu</h2>
-            <div class="drinks-item">
-                <h3><strong>Beer</strong></h3>
-                <p>Madri</p>
-                <p>San Miguel</p>
-            </div>
-            <div class="drinks-item">
-                <h3><strong>Wine</strong></h3>
-                <p>Red</p>
-                <p>White</p>
-                <p>Sangria</p>
-                <p>Tinto Verano</p>
-            </div>
-            <div class="drinks-item">
-                <h3><strong>Soft drinks</strong></h3>
-                <p>Still water</p>
-                <p>Orange juice</p>
-                <p>Fanta orange</p>
-                <p>Coca cola</p>
-            </div>
-        </section>
-
-        <section class="box">
-            <h2>Want to book a table?</h2>
-            <p>Click <a href="{% url 'reservation:reservations' %}"><strong>here</strong></a> to book a reservation.</p>
-        </section>
-    </main>
-
-    <footer>
-        <ul id="social-media">
-            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a>
-            </li>
-            <li><a href="https://x.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-twitter-square"></i></a>
-            </li>
-            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page (opens in a new tab)"><i
-                        class="fa-brands fa-square-instagram"></i></a></li>
-            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Youtube page (opens in a new tab)"><i
-                        class="fa-brands fa-youtube-square"></i></a></li>
-        </ul>
-    </footer>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d5d2033eb6.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock%}}

@@ -1,67 +1,25 @@
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Home{% endblock %}
 
-    <title>Cafe Fuencarral</title>
+{% block content %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+<main>
+    <section class="box">
+        <h2>Reservations</h2>
+        <form method="post">
+            <h3>Please make your booking below</h3>
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Display form fields as paragraphs -->
+            <button type="submit"><strong>Submit</strong></button>
+        </form>
+    </section>
 
-</head>
+    <section class="box">
+        <p>Click <a href="{% url 'reservation:search' %}"><strong>here</strong></a> if you need to modify or cancel
+            an existing reservation</p>
+    </section>
+</main>
 
-<body>
-    <header>
-        <section id="spanish-cuisine">
-            <h1><a href="{% url 'home:home' %}">Cafe Fuencarral</a></h1>
-            <nav>
-                <ul id="navbar">
-                    <li><a href="{% url 'home:home' %}">Home</a></li>
-                    <li><a href="{% url 'menu:menu' %}">Menu</a></li>
-                    <li><a href="{% url 'reservation:reservations' %}">Reservations</a></li>
-                    <li><a href="{% url 'contactus:contactus' %}">Contact us</a></li>
-                </ul>
-            </nav>
-        </section>
-    </header>
-
-    <main>
-        <section class="box">
-            <h2>Reservations</h2>
-            <form method="post">
-                <h3>Please make your booking below</h3>
-                {% csrf_token %}
-                {{ form.as_p }} <!-- Display form fields as paragraphs -->
-                <button type="submit"><strong>Submit</strong></button>
-            </form>
-        </section>
-
-        <section class="box">
-            <p>Click <a href="{% url 'reservation:search' %}"><strong>here</strong></a> if you need to modify or cancel
-                an existing reservation</p>
-        </section>
-    </main>
-
-    <footer>
-        <ul id="social-media">
-            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a>
-            </li>
-            <li><a href="https://x.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-twitter-square"></i></a>
-            </li>
-            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page (opens in a new tab)"><i
-                        class="fa-brands fa-square-instagram"></i></a></li>
-            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Youtube page (opens in a new tab)"><i
-                        class="fa-brands fa-youtube-square"></i></a></li>
-        </ul>
-    </footer>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d5d2033eb6.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock%}

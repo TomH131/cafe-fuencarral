@@ -1,0 +1,56 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cafe Fuencarral</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <section id="spanish-cuisine">
+            <h1><a href="{% url 'home:home' %}">Cafe Fuencarral</a></h1>
+            <nav>
+                <ul id="navbar">
+                    <li><a href="{% url 'home:home' %}">Home</a></li>
+                    <li><a href="{% url 'menu:menu' %}">Menu</a></li>
+                    <li><a href="{% url 'reservation:reservations' %}">Reservations</a></li>
+                    <li><a href="{% url 'contactus:contactus' %}">Contact us</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <ul id="social-media">
+            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li><a href="https://x.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-twitter-square"></i></a>
+            </li>
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page (opens in a new tab)"><i
+                        class="fa-brands fa-square-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Youtube page (opens in a new tab)"><i
+                        class="fa-brands fa-youtube-square"></i></a></li>
+        </ul>
+    </footer>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d5d2033eb6.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
