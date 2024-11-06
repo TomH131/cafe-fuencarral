@@ -8,10 +8,10 @@ class ReservationAdmin(admin.ModelAdmin):
         ("Reservation", {"fields": ["date", "time", "people", "code"]})
     ]
 
-    list_display = ["date", "time", "people", "name"]
+    list_display = ["date", "time", "people", "name", "timestamp"]
 
     list_filter = ["date"]
 
-    # ordering = ["date", "time"]
+    ordering = ["date", "time"]
 
 admin.site.register(Reservation, ReservationAdmin)

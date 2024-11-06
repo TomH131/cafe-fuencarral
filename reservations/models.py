@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import time
+from django.utils import timezone
 import random
 import string
 
@@ -41,12 +42,24 @@ class Reservation(models.Model):
         choices=SPECIAL_OCCASION_CHOICES, 
         blank=True)
     code = models.CharField(max_length=20, blank=True, null=True)
+    timestamp = models.DateTimeField(null=True, blank=True)
+
+    def time_submitted(self):
+        self.timestamp = timezone.now()
+        self.save()
 
     def __str__(self):
         return f"Reservation for {self.name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
 
     def save(self, *args, **kwargs):
-        self.code = generate_code()
+        # Set the code only if it hasn't been set already
+        if not self.code:
+            self.code = generate_code()
+        
+        # Set timestamp only if it's not already set
+        if not self.timestamp:
+            self.timestamp = timezone.now()
+        
         super(Reservation, self).save(*args, **kwargs)
 
 def generate_code(length=8, prefix="FUE-"):
