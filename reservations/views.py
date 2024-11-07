@@ -48,10 +48,8 @@ def search_view(request):
     return render(request, 'reservations/search.html', {'form': form, 'reservations': reservations, 'error_message': error_message})
     
 def modify_view(request, code):
-    # Get the reservation by code
     reservation = get_object_or_404(Reservation, code=code)
 
-    # If the reservation is not active, redirect to a cancellation page or display a message
     if reservation.status != "Active":
         return redirect('reservation:cancel', code=code)
 
@@ -59,7 +57,7 @@ def modify_view(request, code):
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
-            return redirect('reservation:update', code=reservation.code)  # Redirect to the update page
+            return redirect('reservation:update', code=reservation.code)
     else:
         form = ReservationForm(instance=reservation)
 
@@ -73,7 +71,7 @@ def cancel_view(request, code):
         reservation.save()
         return render(request, 'reservations/cancel.html', {'reservation': reservation})
     
-    return redirect('reservation:details', code=reservation.code)  # In case the status is not Active
+    return redirect('reservation:details', code=reservation.code)
 
 def details_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)
