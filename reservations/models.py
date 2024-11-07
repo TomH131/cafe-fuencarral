@@ -40,12 +40,14 @@ class Reservation(models.Model):
     people = models.IntegerField(choices=NUMBER_OF_PEOPLE_CHOICES)
     date = models.DateField()
     time = models.TimeField(choices=TIME_OF_DAY_CHOICES)
-    name = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
     special_occasion = models.CharField(
         max_length=200, 
         choices=SPECIAL_OCCASION_CHOICES, 
-        blank=True)
+        blank=True,
+        default='None')
     code = models.CharField(max_length=20, blank=True, null=True)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
@@ -59,7 +61,7 @@ class Reservation(models.Model):
         self.save()
 
     def __str__(self):
-        return f"Reservation for {self.name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
+        return f"Reservation for {self.first_name} {self.last_name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
 
     def save(self, *args, **kwargs):
         # Set the code only if it hasn't been set already

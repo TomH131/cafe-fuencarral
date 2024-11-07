@@ -4,11 +4,11 @@ from .models import Reservation
 # Register your models here.
 class ReservationAdmin(admin.ModelAdmin):
     fieldsets = [
-        ("Contact Information", {"fields": ["name", "email"]}),
+        ("Contact Information", {"fields": ["first_name", "last_name", "email"]}),
         ("Reservation", {"fields": ["date", "time", "people", "code", "status"]})
     ]
 
-    list_display = ["date", "time", "people", "name", "timestamp"]
+    list_display = ["date", "time", "people", "first_name", "last_name", "timestamp"]
 
     list_filter = ["date"]
 

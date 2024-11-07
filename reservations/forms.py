@@ -6,10 +6,11 @@ from datetime import date
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['people', 'date', 'time', 'name', 'email', 'special_occasion']
+        fields = ['people', 'date', 'time', 'first_name', 'last_name', 'email', 'special_occasion']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
         }
 

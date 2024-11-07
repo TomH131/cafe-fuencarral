@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationForm, SearchForm
 from .models import Reservation
+from django.urls import reverse
 
 def reservations_view(request):
     if request.method == "POST":
@@ -27,10 +28,13 @@ def search_view(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             code = form.cleaned_data.get('code')
-            reservations = Reservation.objects.filter(code=code)
+            return redirect(reverse('reservation:modify', kwargs={'code': code}))
     else:
         form = SearchForm()
-        reservations = []
 
-    return render(request, 'reservations/search.html', {'form': form, 'reservations': reservations})
+    return render(request, 'reservations/search.html', {'form': form})
     
+def modify_view(request, code):
+    reservation = get_object_or_404(Reservation, code=code)
+
+    return render(request, 'reservations/modify.html', {'reservation': reservation})
