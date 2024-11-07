@@ -13,6 +13,10 @@
             {{ form.as_p }} <!-- Display form fields as paragraphs -->
             <button type="submit"><strong>Search</strong></button>
         </form>
+
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
     </section>
 
     <section class="images">

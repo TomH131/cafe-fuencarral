@@ -8,9 +8,9 @@ class ReservationAdmin(admin.ModelAdmin):
         ("Reservation", {"fields": ["date", "time", "people", "code", "status"]})
     ]
 
-    list_display = ["date", "time", "people", "first_name", "last_name", "timestamp"]
+    list_display = ["date", "time", "people", "first_name", "last_name", "timestamp", "status"]
 
-    list_filter = ["date"]
+    list_filter = ["date", "status"]
 
     ordering = ["date", "time"]
 

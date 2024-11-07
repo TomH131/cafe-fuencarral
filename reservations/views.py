@@ -24,15 +24,24 @@ def submission_view(request):
     return render(request, 'reservations/submission.html', {'code': code})
 
 def search_view(request):
+    reservations = []
+    error_message = None
+
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
             code = form.cleaned_data.get('code')
-            return redirect(reverse('reservation:modify', kwargs={'code': code}))
+            reservations = Reservation.objects.filter(code=code)
+            
+            if not reservations.exists():
+                error_message = "This code does not exist."
+
+            if reservations.exists():
+                return redirect('reservation:modify', code=code)
     else:
         form = SearchForm()
 
-    return render(request, 'reservations/search.html', {'form': form})
+    return render(request, 'reservations/search.html', {'form': form, 'reservations': reservations, 'error_message': error_message})
     
 def modify_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)

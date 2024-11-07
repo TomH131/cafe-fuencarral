@@ -64,24 +64,18 @@ class Reservation(models.Model):
         return f"Reservation for {self.first_name} {self.last_name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
 
     def save(self, *args, **kwargs):
-        # Set the code only if it hasn't been set already
         if not self.code:
             self.code = generate_code()
         
-        # Set timestamp only if it's not already set
         if not self.timestamp:
             self.timestamp = timezone.now()
 
-        # Ensure status is set to "Active" if not explicitly provided
         if not self.status:
             self.status = "Active"
         
         super(Reservation, self).save(*args, **kwargs)
 
 def generate_code(length=8, prefix="FUE-"):
-    # Choose from uppercase letters and digits
     characters = string.ascii_uppercase + string.digits
-    # Generate random characters for the specified length
     random_code = ''.join(random.choice(characters) for _ in range(length))
-    # Return the code with the prefix
     return prefix + random_code

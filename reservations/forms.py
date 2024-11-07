@@ -21,4 +21,4 @@ class ReservationForm(forms.ModelForm):
         return selected_date
 
 class SearchForm(forms.Form):
-    code = forms.CharField() 
+    code = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your code'}))
