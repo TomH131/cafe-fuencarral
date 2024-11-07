@@ -13,19 +13,21 @@
         <p><strong>Date:</strong> {{ reservation.date }}</p>
         <p><strong>Time:</strong> {{ reservation.time }}</p>
         <p><strong>Special Occasion:</strong> {{ reservation.special_occasion }}</p>
-        {% if can_modify %}
-        <form action="{% url 'reservation:modify' reservation.code %}" method="get">
-            <button type="submit">Modify</button>
-        </form>
-        {% endif %}
 
-        {% if can_cancel %}
-        <form action="{% url 'reservation:cancel' reservation.code %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Cancel</button>
-        </form>
-        {% endif %}
+        <div id="buttons">
+            {% if can_modify %}
+            <form action="{% url 'reservation:modify' reservation.code %}" method="get">
+                <button type="submit">Modify</button>
+            </form>
+            {% endif %}
 
+            {% if can_cancel %}
+            <form action="{% url 'reservation:cancel' reservation.code %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Cancel</button>
+            </form>
+            {% endif %}
+        </div>
 
         {% if not can_modify and not can_cancel %}
         <p>This reservation has been cancelled.</p>

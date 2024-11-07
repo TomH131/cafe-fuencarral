@@ -171,15 +171,28 @@ button {
     border-width: thin;
     border-radius: 10px;
     border-color: black;
-    padding: 5px;
-    margin: 5px;
+    padding: 8px 20px;
+    margin: 0;
     text-align: center;
-    width: 30%;
+    width: auto;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: gold;
     color: darkred;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+#buttons form {
+    margin: 0;
 }
 
 /* Contact us page */

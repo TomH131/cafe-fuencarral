@@ -7,6 +7,7 @@
 <main>
     <section class="box">
         <h2>Reservation Details</h2>
+        <p>Feel free to make any changes to the details below and click Update to confirm the amendments.</p>
 
         <!-- Error message check -->
         {% if error_message %}
@@ -16,7 +17,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Update Reservation</button>
+                <button type="submit">Update</button>
             </form>
         {% endif %}
 

@@ -15,7 +15,9 @@
             <p>This code will be sent to you via email. Please make a note of it as it can be used to modify or
                 cancel your reservation.</p>
             {% else %}
-            <p>There was an issue generating your reservation code. Please contact us directly.</p>
+            <p>There was an issue generating your reservation code. Please contact us directly. <br>Click <a
+                    href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact information.
+            </p>
             {% endif %}
         </div>
     </section>
