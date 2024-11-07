@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+<main>
+    <section class="box">
+        <h2>Reservation Details</h2>
+        
+        <p><strong>Name:</strong> {{ reservation.first_name }} {{ reservation.last_name }}</p>
+        <p><strong>Email:</strong> {{ reservation.email }}</p>
+        <p><strong>Date:</strong> {{ reservation.date }}</p>
+        <p><strong>Time:</strong> {{ reservation.time }}</p>
+        <p><strong>Special Occasion:</strong> {{ reservation.special_occasion }}</p>
+        
+        {% if can_modify %}
+            <a href="{% url 'reservation:modify' reservation.code %}">
+                <button>Modify</button>
+            </a>
+        {% endif %}
+        
+        {% if can_cancel %}
+            <a href="{% url 'reservation:cancel' reservation.code %}">
+                <button>Cancel</button>
+            </a>
+        {% endif %}
+        
+        {% if not can_modify and not can_cancel %}
+            <p>This reservation has been cancelled.</p>
+        {% endif %}
+    </section>
+
+    <section class="images">
+        <div id="croquetas"></div>
+        <div id="melon"></div>
+        <div id="peppers"></div>
+    </section>
+</main>
+{% endblock %}

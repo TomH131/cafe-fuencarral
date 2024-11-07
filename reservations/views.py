@@ -25,7 +25,7 @@ def submission_view(request):
 
 def search_view(request):
     reservations = []
-    error_message = None
+    error_message = None  # Initialize error message to None
 
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -33,20 +33,37 @@ def search_view(request):
             code = form.cleaned_data.get('code')
             reservations = Reservation.objects.filter(code=code)
             
+            # Check if no reservation was found
             if not reservations.exists():
-                error_message = "This code does not exist."
+                error_message = "This code does not exist."  # Set error message
 
+            # If a reservation is found, redirect to details page
             if reservations.exists():
-                return redirect('reservation:modify', code=code)
+                reservation = reservations.first()
+                return redirect('reservation:details', code=reservation.code)
+
     else:
         form = SearchForm()
 
     return render(request, 'reservations/search.html', {'form': form, 'reservations': reservations, 'error_message': error_message})
     
 def modify_view(request, code):
+    # Get the reservation by code
     reservation = get_object_or_404(Reservation, code=code)
 
-    return render(request, 'reservations/modify.html', {'reservation': reservation})
+    # If the reservation is not active, redirect to a cancellation page or display a message
+    if reservation.status != "Active":
+        return redirect('reservation:cancel', code=code)
+
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('reservation:update', code=reservation.code)  # Redirect to the update page
+    else:
+        form = ReservationForm(instance=reservation)
+
+    return render(request, 'reservations/modify.html', {'form': form, 'reservation': reservation})
 
 def cancel_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)
@@ -54,5 +71,22 @@ def cancel_view(request, code):
     if reservation.status == "Active":
         reservation.status = "Cancelled"
         reservation.save()
+        return render(request, 'reservations/cancel.html', {'reservation': reservation})
     
-    return render(request, 'reservations/cancel.html', {'reservation': reservation})
+    return redirect('reservation:details', code=reservation.code)  # In case the status is not Active
+
+def details_view(request, code):
+    reservation = get_object_or_404(Reservation, code=code)
+
+    # Check if the status is Active
+    can_modify = reservation.status == "Active"
+    can_cancel = reservation.status == "Active"
+
+    return render(request, 'reservations/details.html', {
+        'reservation': reservation,
+        'can_modify': can_modify,
+        'can_cancel': can_cancel
+    })
+
+def update_view(request, code):
+    return render(request, 'reservations/update.html')
