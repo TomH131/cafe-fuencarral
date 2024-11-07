@@ -38,3 +38,12 @@ def modify_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)
 
     return render(request, 'reservations/modify.html', {'reservation': reservation})
+
+def cancel_view(request, code):
+    reservation = get_object_or_404(Reservation, code=code)
+
+    if reservation.status == "Active":
+        reservation.status = "Cancelled"
+        reservation.save()
+    
+    return render(request, 'reservations/cancel.html', {'reservation': reservation})
