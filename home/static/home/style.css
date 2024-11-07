@@ -21,20 +21,14 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
     font-size: 95%;
     font-weight: bold;
-    position: absolute;
-    bottom: 0;
+    background-color: darkred;
 }
 
 header a {
     text-decoration: none;
     color: gold;
-    background-color: rgb(128, 0, 0, 0.3);
-    padding-left: 5px;
-    padding-right: 5px;
 }
 
 #navbar a:hover {
@@ -51,7 +45,6 @@ header a {
         1px -1px 0 black,
         -1px 1px 0 black,
         1px 1px 0 black;
-    border-bottom: 4px solid darkred;
 }
 
 /* Main content */

@@ -5,7 +5,7 @@ from .models import Reservation
 class ReservationAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Contact Information", {"fields": ["name", "email"]}),
-        ("Reservation", {"fields": ["date", "time", "people", "code"]})
+        ("Reservation", {"fields": ["date", "time", "people", "code", "status"]})
     ]
 
     list_display = ["date", "time", "people", "name", "timestamp"]

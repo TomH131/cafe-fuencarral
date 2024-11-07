@@ -32,6 +32,11 @@ class Reservation(models.Model):
         ("Anniversary", "Anniversary"),
     ]
 
+    STATUS_CHOICES = [
+        ("Active", "Active"),
+        ("Cancelled", "Cancelled"),
+    ]
+
     people = models.IntegerField(choices=NUMBER_OF_PEOPLE_CHOICES)
     date = models.DateField()
     time = models.TimeField(choices=TIME_OF_DAY_CHOICES)
@@ -43,6 +48,11 @@ class Reservation(models.Model):
         blank=True)
     code = models.CharField(max_length=20, blank=True, null=True)
     timestamp = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(
+        max_length=200,
+        choices=STATUS_CHOICES,
+        default="Active"
+    )
 
     def time_submitted(self):
         self.timestamp = timezone.now()
@@ -59,6 +69,10 @@ class Reservation(models.Model):
         # Set timestamp only if it's not already set
         if not self.timestamp:
             self.timestamp = timezone.now()
+
+        # Ensure status is set to "Active" if not explicitly provided
+        if not self.status:
+            self.status = "Active"
         
         super(Reservation, self).save(*args, **kwargs)
 
