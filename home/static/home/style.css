@@ -131,7 +131,7 @@ label {
 input,
 select {
     margin: 5px;
-    width: 50%;
+    width: 70%;
     text-align: center;
     border-style: solid;
     border-width: thin;
@@ -172,7 +172,7 @@ button:hover {
 }
 
 #croquetas {
-    background: url("images/croquetas-de-jamon-serrano.jpeg") no-repeat center center/cover;
+    background: url("images/croquetas-de-jamon-serrano.webp") no-repeat center center/cover;
     width: 80%;
     height: 150px;
     margin: 10px auto;
@@ -253,7 +253,7 @@ footer a {
     #pan,
     #huevos,
     #pulpo {
-        height: 200px;
+        height: 300px;
         width: 30%;
     }
 }

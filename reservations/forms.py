@@ -38,7 +38,7 @@ class ReservationPart1Form(forms.ModelForm):
         
             if existing_reservations >= MAX_RESERVATIONS_PER_SLOT:
                 raise ValidationError(
-                    f"Sorry, all tables are booked for {formatted_date} at {formatted_time}. Please select a different time or date."
+                    f"All our tables are booked at {formatted_time} on {formatted_date}. Please select a different time or date."
                 )
     
         return cleaned_data
