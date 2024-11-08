@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Reservations{% endblock %}
+{% block title %}Reservations two{% endblock %}
 
 {% block content %}
 
@@ -9,16 +9,13 @@
     <section class="box">
         <h2>Reservations</h2>
         <form method="post">
-            <h3>Please make your booking below</h3>
+            <h3>Please complete your booking</h3>
             {% csrf_token %}
-            {{ form.as_p }} <!-- Display form fields as paragraphs -->
+            <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
+            <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
+            <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
             <button type="submit"><strong>Submit</strong></button>
         </form>
-    </section>
-
-    <section class="box">
-        <p>Click <a href="{% url 'reservation:search' %}"><strong>here</strong></a> if you need to modify or cancel
-            an existing reservation</p>
     </section>
 
     <section class="images">

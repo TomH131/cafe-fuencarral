@@ -26,12 +26,6 @@ class Reservation(models.Model):
         (time(21, 0), "21:00"),
     ]
 
-    SPECIAL_OCCASION_CHOICES = [
-        ("None", "None"),
-        ("Birthday", "Birthday"),
-        ("Anniversary", "Anniversary"),
-    ]
-
     STATUS_CHOICES = [
         ("Active", "Active"),
         ("Cancelled", "Cancelled"),
@@ -43,11 +37,6 @@ class Reservation(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    special_occasion = models.CharField(
-        max_length=200, 
-        choices=SPECIAL_OCCASION_CHOICES, 
-        blank=True,
-        default='None')
     code = models.CharField(max_length=20, blank=True, null=True)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
