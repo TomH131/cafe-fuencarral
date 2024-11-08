@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Reservations{% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="box">
+        <h2>Confirm Reservation</h2>
+        <p>Here are the details of your reservation:</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Reservation</button>
+        </form>
+
+        <section class="images">
+            <div id="croquetas"></div>
+            <div id="melon"></div>
+            <div id="peppers"></div>
+        </section>
+</main>
+
+{% endblock%}

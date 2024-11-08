@@ -8,7 +8,7 @@
 <main>
     <section class="box">
         <h2>Reservations</h2>
-        <form method="post">
+        <!-- <form method="post">
             <h3>Please make your booking below</h3>
             {% csrf_token %}
             {% if form.errors %}
@@ -25,7 +25,13 @@
             <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
             <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
             <button type="submit"><strong>Submit</strong></button>
+        </form> -->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Next</button>
         </form>
+        
     </section>
 
     <section class="box">
