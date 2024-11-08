@@ -23,8 +23,8 @@ def submission_view(request):
     return render(request, 'reservations/submission.html', {'code': code})
 
 def search_view(request):
-    reservations = []  # Initialize an empty list to hold search results
-    error_message = None  # Initialize error message to None
+    reservations = []
+    error_message = None
 
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -32,14 +32,12 @@ def search_view(request):
             code = form.cleaned_data.get('code')
             reservations = Reservation.objects.filter(code=code)
 
-            # Check if no reservation was found
             if not reservations.exists():
-                error_message = "This code does not exist."  # Set error message if no reservation is found
+                error_message = "This code does not exist."
 
-            # If a reservation is found, redirect to details page
             elif reservations.exists():
-                reservation = reservations.first()  # Get the first matching reservation
-                return redirect('reservations:details', code=reservation.code)  # Redirect to the details page
+                reservation = reservations.first()
+                return redirect('reservations:details', code=reservation.code)
 
     else:
         form = SearchForm()

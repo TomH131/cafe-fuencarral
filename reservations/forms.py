@@ -26,22 +26,25 @@ class ReservationForm(forms.ModelForm):
         cleaned_data = super().clean()
         selected_date = cleaned_data.get('date')
         selected_time = cleaned_data.get('time')
-        
-        # Check if the date and time fields are filled in
+    
         if selected_date and selected_time:
-            # Query existing reservations for the same date and time
+            formatted_date = selected_date.strftime('%d/%m/%Y')
+            
+            formatted_time = selected_time.strftime('%H:%M')
+            
+            formatted_time = formatted_time.zfill(5)
+            
             existing_reservations = Reservation.objects.filter(
                 date=selected_date,
                 time=selected_time
             ).count()
-            
+        
             if existing_reservations >= MAX_RESERVATIONS_PER_SLOT:
                 raise ValidationError(
-                    f"Sorry, all tables are booked for {selected_date} at {selected_time}. Please select a different time or date."
+                    f"Sorry, all tables are booked for {formatted_date} at {formatted_time}. Please select a different time or date."
                 )
-        
+    
         return cleaned_data
-
 
 class SearchForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your code'}))
