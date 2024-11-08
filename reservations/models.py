@@ -34,13 +34,13 @@ class Reservation(models.Model):
     people = models.IntegerField(choices=NUMBER_OF_PEOPLE_CHOICES)
     date = models.DateField()
     time = models.TimeField(choices=TIME_OF_DAY_CHOICES)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200)
-    code = models.CharField(max_length=20, blank=True, null=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=50)
+    code = models.CharField(max_length=15, blank=True, null=True)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
-        max_length=200,
+        max_length=20,
         choices=STATUS_CHOICES,
         default="Active"
     )

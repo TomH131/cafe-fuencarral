@@ -92,6 +92,12 @@ p {
     border-radius: 5%;
 }
 
+/* menu */
+.menu-item,
+.drinks.item {
+    padding: 5px;
+}
+
 #pan {
     background: url("images/pan-con-alioli.jpg") no-repeat center center/cover;
     width: 80%;
@@ -110,36 +116,6 @@ p {
 
 #pulpo {
     background: url("images/pulpo-a-la-gallega.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
-}
-
-/* menu */
-.menu-item,
-.drinks.item {
-    padding: 5px;
-}
-
-#croquetas {
-    background: url("images/croquetas-de-jamon-serrano.jpeg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
-}
-
-#melon {
-    background: url("images/melon-con-jamon.jpg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
-}
-
-#peppers {
-    background: url("images/padron-peppers.webp") no-repeat center center/cover;
     width: 80%;
     height: 150px;
     margin: 10px auto;
@@ -193,6 +169,30 @@ button:hover {
 
 #buttons form {
     margin: 0;
+}
+
+#croquetas {
+    background: url("images/croquetas-de-jamon-serrano.jpeg") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#melon {
+    background: url("images/melon-con-jamon.jpg") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+#peppers {
+    background: url("images/padron-peppers.webp") no-repeat center center/cover;
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
 }
 
 /* Contact us page */

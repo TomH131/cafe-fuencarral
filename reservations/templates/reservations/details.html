@@ -8,6 +8,10 @@
     <section class="box">
         <h2>Reservation Details</h2>
 
+        {% if not can_modify and not can_cancel %}
+        <p>This reservation has been cancelled.</p>
+        {% endif %}
+
         <p><strong>Name:</strong> {{ reservation.first_name }} {{ reservation.last_name }}</p>
         <p><strong>Email:</strong> {{ reservation.email }}</p>
         <p><strong>Date:</strong> {{ reservation.date }}</p>
@@ -28,10 +32,6 @@
             </form>
             {% endif %}
         </div>
-
-        {% if not can_modify and not can_cancel %}
-        <p>This reservation has been cancelled.</p>
-        {% endif %}
     </section>
 
     <section class="box">

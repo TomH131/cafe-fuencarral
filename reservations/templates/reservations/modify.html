@@ -7,16 +7,22 @@
 <main>
     <section class="box">
         <h2>Reservation Details</h2>
-        <p>Feel free to make any changes to the details below and click Update to confirm the amendments.</p>
+        <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the amendments.
+        </p>
 
         {% if error_message %}
-            <p>{{ error_message }}</p>
+        <p>{{ error_message }}</p>
         {% else %}
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Update</button>
-            </form>
+        <form method="POST">
+            {% csrf_token %}
+            <p><i class="fa-solid fa-people-group"></i> {{ form.people }}</p>
+            <p><i class="fa-regular fa-calendar-days"></i> {{ form.date }}</p>
+            <p><i class="fa-solid fa-clock"></i> {{ form.time }}</p>
+            <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
+            <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
+            <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
+            <button type="submit">Update</button>
+        </form>
         {% endif %}
 
     </section>

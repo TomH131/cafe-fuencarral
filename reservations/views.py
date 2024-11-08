@@ -33,7 +33,7 @@ def search_view(request):
             reservations = Reservation.objects.filter(code=code)
 
             if not reservations.exists():
-                error_message = "This code does not exist."
+                error_message = "This code does not exist. Please try again."
 
             elif reservations.exists():
                 reservation = reservations.first()
@@ -77,7 +77,6 @@ def cancel_view(request, code):
 def details_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)
 
-    # Check if the status is Active
     can_modify = reservation.status == "Active"
     can_cancel = reservation.status == "Active"
 
