@@ -9,11 +9,9 @@
         <h2>Reservation Details</h2>
         <p>Feel free to make any changes to the details below and click Update to confirm the amendments.</p>
 
-        <!-- Error message check -->
         {% if error_message %}
             <p>{{ error_message }}</p>
         {% else %}
-            <!-- Reservation Update Form -->
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}

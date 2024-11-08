@@ -4,7 +4,15 @@ from .models import Reservation
 from datetime import datetime
 
 def reservations_view(request):
-    return render(request, 'reservations/reservations.html')
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save()
+            return render(request, 'reservations/submission.html', {'code': reservation.code})
+    else:
+        form = ReservationForm()
+
+    return render(request, 'reservations/reservations.html', {'form': form})
 
 def submission_view(request):
     code = request.session.get('reservation_code')
@@ -15,7 +23,7 @@ def submission_view(request):
     return render(request, 'reservations/submission.html', {'code': code})
 
 def search_view(request):
-    reservations = []
+    reservations = []  # Initialize an empty list to hold search results
     error_message = None  # Initialize error message to None
 
     if request.method == "POST":
@@ -23,20 +31,24 @@ def search_view(request):
         if form.is_valid():
             code = form.cleaned_data.get('code')
             reservations = Reservation.objects.filter(code=code)
-            
+
             # Check if no reservation was found
             if not reservations.exists():
-                error_message = "This code does not exist."  # Set error message
+                error_message = "This code does not exist."  # Set error message if no reservation is found
 
             # If a reservation is found, redirect to details page
-            if reservations.exists():
-                reservation = reservations.first()
-                return redirect('reservation:details', code=reservation.code)
+            elif reservations.exists():
+                reservation = reservations.first()  # Get the first matching reservation
+                return redirect('reservations:details', code=reservation.code)  # Redirect to the details page
 
     else:
         form = SearchForm()
 
-    return render(request, 'reservations/search.html', {'form': form, 'reservations': reservations, 'error_message': error_message})
+    return render(request, 'reservations/search.html', {
+        'form': form,
+        'reservations': reservations,
+        'error_message': error_message
+    })
     
 def modify_view(request, code):
     reservation = get_object_or_404(Reservation, code=code)
@@ -48,7 +60,7 @@ def modify_view(request, code):
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
-            return redirect('reservation:update', code=reservation.code)
+            return redirect('reservations:update', code=reservation.code)
     else:
         form = ReservationForm(instance=reservation)
 

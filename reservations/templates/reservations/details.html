@@ -12,17 +12,17 @@
         <p><strong>Email:</strong> {{ reservation.email }}</p>
         <p><strong>Date:</strong> {{ reservation.date }}</p>
         <p><strong>Time:</strong> {{ reservation.time }}</p>
-        <p><strong>Special Occasion:</strong> {{ reservation.special_occasion }}</p>
+        <p><strong>People:</strong> {{ reservation.people }}</p>
 
         <div id="buttons">
             {% if can_modify %}
-            <form action="{% url 'reservation:modify' reservation.code %}" method="get">
+            <form action="{% url 'reservations:modify' reservation.code %}" method="get">
                 <button type="submit">Modify</button>
             </form>
             {% endif %}
 
             {% if can_cancel %}
-            <form action="{% url 'reservation:cancel' reservation.code %}" method="post">
+            <form action="{% url 'reservations:cancel' reservation.code %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Cancel</button>
             </form>
@@ -35,7 +35,7 @@
     </section>
 
     <section class="box">
-        <p>Click <a href="{% url 'reservation:search' %}"><strong>here</strong></a> to search for another reservation.
+        <p>Click <a href="{% url 'reservations:search' %}"><strong>here</strong></a> to search for another reservation.
         </p>
     </section>
 
