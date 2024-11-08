@@ -21,6 +21,18 @@
             {% endif %}
         </div>
     </section>
+    <section class="box">
+        <div>
+            {% if reservation %}
+            <h3>Reservation Details</h3>
+            <p>Reservation booked at {{ reservation.time }} on {{ reservation.date }} for {{ reservation.people }}
+                people.</p>
+
+            <p><strong>Reserved for:</strong> {{ reservation.first_name }} {{ reservation.last_name }}</p>
+            <p><strong>Email:</strong> {{ reservation.email }}</p>
+            {% endif %}
+        </div>
+    </section>
 
     <section class="box">
         <div>

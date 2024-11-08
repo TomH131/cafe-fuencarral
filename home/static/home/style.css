@@ -253,7 +253,22 @@ footer a {
     #pan,
     #huevos,
     #pulpo {
-        height: 300px;
+        height: 200px;
         width: 30%;
+    }
+}
+
+/* Media query for tablets and larger (1024px and up) */
+@media screen and (min-width: 1024px) {
+    #paella,
+    #patatas,
+    #tortilla,
+    #croquetas,
+    #melon,
+    #peppers,
+    #pan,
+    #huevos,
+    #pulpo {
+        height: 300px;
     }
 }

@@ -16,7 +16,7 @@ class ReservationPart1Form(forms.ModelForm):
     def clean_date(self):
         selected_date = self.cleaned_data['date']
         if selected_date < date.today():
-            raise ValidationError("This date is in the past and cannot be selected")
+            raise ValidationError("The date selected is in the past and cannot be selected.")
         return selected_date
 
     def clean(self):

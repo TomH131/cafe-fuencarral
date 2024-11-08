@@ -56,12 +56,14 @@ def reservation_step2_view(request):
 def submission_view(request):
     code = request.session.get('reservation_code')
 
-    if code:
-        del request.session['reservation_code']
+    reservation = Reservation.objects.filter(code=code).first() if code else None
 
-        return render(request, 'reservations/submission.html', {'code': code})
+    context = {
+        'code': code,
+        'reservation': reservation,
+    }
 
-    return redirect('reservations:reservations')
+    return render(request, 'reservations/submission.html', context)
 
 def search_view(request):
     reservations = []
