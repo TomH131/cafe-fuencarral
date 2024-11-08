@@ -1,37 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationForm, SearchForm
 from .models import Reservation
+from datetime import datetime
 
-def reservation_step_one_view(request):
-    if request.method == "POST":
-        form = ReservationForm(request.POST)
-        # Limit validation to fields needed in step one
-        if form.is_valid():
-            # Store only first-step data in session
-            request.session['form_data'] = {key: form.cleaned_data[key] for key in ['people', 'date', 'time']}
-            return redirect('reservation:step_two')
-    else:
-        form = ReservationForm()
-
-    return render(request, 'reservations/reservation_step_one.html', {'form': form})
-
-
-def reservation_step_two_view(request):
-    form_data = request.session.get('form_data')
-    # if not form_data:
-    #     return redirect('reservation:step_one')
-
-    if request.method == "POST":
-        # Create form instance with initial data for both steps
-        form = ReservationForm(request.POST, initial=form_data)
-        if form.is_valid():
-            # Save the reservation data
-            form.save()
-            return redirect('reservation:submission')
-    else:
-        form = ReservationForm(initial=form_data)
-
-    return render(request, 'reservations/reservation_step_two.html', {'form': form})
+def reservations_view(request):
+    return render(request, 'reservations/reservations.html')
 
 def submission_view(request):
     code = request.session.get('reservation_code')

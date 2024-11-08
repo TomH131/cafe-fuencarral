@@ -42,10 +42,6 @@ class ReservationForm(forms.ModelForm):
         
         return cleaned_data
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.label = ''
 
 class SearchForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your code'}))
