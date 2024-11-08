@@ -8,41 +8,27 @@
     <section class="box">
         <h2>Reservation Details</h2>
         <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
-            amendments.
-        </p>
+            amendments.</p>
+        {% if form_part1.errors %}
+        {% for field, errors in form_part1.errors.items %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
 
-        <form method="post">
-            {% csrf_token %}
-
-            <h2>Modify Reservation (Step 1)</h2>
-            <div>
-                {{ form_part1.as_p }}
-            </div>
-
-            <h2>Modify Reservation (Step 2)</h2>
-            <div>
-                {{ form_part2.as_p }}
-            </div>
-
-            <button type="submit">Update Reservation</button>
-        </form>
-        
-        <!-- {% if error_message %}
-        <p>{{ error_message }}</p>
-        {% else %}
         <form method="POST">
             {% csrf_token %}
-            <p><i class="fa-solid fa-people-group"></i> {{ form.people }}</p>
-            <p><i class="fa-regular fa-calendar-days"></i> {{ form.date }}</p>
-            <p><i class="fa-solid fa-clock"></i> {{ form.time }}</p>
-            <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
-            <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
-            <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
+            <p><i class="fa-solid fa-people-group"></i> {{ form_part1.people }}</p>
+            <p><i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}</p>
+            <p><i class="fa-solid fa-clock"></i> {{ form_part1.time }}</p>
+            <p><i class="fa-solid fa-user"></i> {{ form_part2.first_name }}</p>
+            <p><i class="fa-solid fa-user"></i> {{ form_part2.last_name }}</p>
+            <p><i class="fa-solid fa-envelope"></i> {{ form_part2.email }}</p>
             <button type="submit">Update</button>
         </form>
-        {% endif %} -->
-
     </section>
+
 
     <section class="images">
         <div id="croquetas"></div>

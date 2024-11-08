@@ -4,25 +4,6 @@ from .models import Reservation
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, date, time
 
-# def reservations_view(request):
-#     if request.method == 'POST':
-#         form = ReservationForm(request.POST)
-#         if form.is_valid():
-#             reservation = form.save()
-#             return render(request, 'reservations/submission.html', {'code': reservation.code})
-#     else:
-#         form = ReservationForm()
-
-#     return render(request, 'reservations/reservations.html', {'form': form})
-
-# def submission_view(request):
-#     code = request.session.get('reservation_code')
-    
-#     if code:
-#         del request.session['reservation_code']
-
-#     return render(request, 'reservations/submission.html', {'code': code})
-
 def reservation_step1_view(request):
     if request.method == 'POST':
         form = ReservationPart1Form(request.POST)
