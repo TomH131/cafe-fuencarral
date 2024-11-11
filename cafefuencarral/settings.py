@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,14 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0_yloda1ton-q*zl-i^8i@6$tz6&hy!_@64q_qx8^q^n&)j&-e'
+SECRET_KEY = os.environ.get('SECRET_KEY', '50mTqrmL0H')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-tomh131-cafefuencarral-pa3y8czuemu.ws-eu116.gitpod.io",
-    "cafe-fuencarral.herokuapp.com"
+    "cafe-fuencarral.herokuapp.com",
+    ".herokuapp.com"
 ]
 
 # Application definition
@@ -131,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-tomh131-cafefuencarral-pa3y8czuemu.ws-eu116.gitpod.io',
-    'https://cafe-fuencarral-fbc8f9e22845.herokuapp.com/'
+    'https://cafe-fuencarral.herokuapp.com'
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
