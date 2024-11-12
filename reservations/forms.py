@@ -1,7 +1,7 @@
 from django import forms
 from .models import Reservation
 from django.core.exceptions import ValidationError
-from datetime import date
+from datetime import date, datetime, timedelta
 
 MAX_RESERVATIONS_PER_SLOT = 10
 
@@ -10,13 +10,13 @@ class ReservationPart1Form(forms.ModelForm):
         model = Reservation
         fields = ['people', 'date', 'time']
         widgets = {
-                'date': forms.DateInput(attrs={'type': 'date'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
 
     def clean_date(self):
         selected_date = self.cleaned_data['date']
         if selected_date < date.today():
-            raise ValidationError("The date selected is in the past and cannot be selected.")
+            raise ValidationError("The chosen date is in the past and cannot be used.")
         return selected_date
 
     def clean(self):
@@ -25,21 +25,18 @@ class ReservationPart1Form(forms.ModelForm):
         selected_time = cleaned_data.get('time')
     
         if selected_date and selected_time:
-            formatted_date = selected_date.strftime('%d/%m/%Y')
+            start_time = (datetime.combine(selected_date, selected_time) - timedelta(hours=1.5)).time()
+            end_time = (datetime.combine(selected_date, selected_time) + timedelta(hours=1.5)).time()
             
-            formatted_time = selected_time.strftime('%H:%M')
-            
-            formatted_time = formatted_time.zfill(5)
-            
-            existing_reservations = Reservation.objects.filter(
+            overlapping_reservations = Reservation.objects.filter(
                 date=selected_date,
-                time=selected_time
+                time__range=(start_time, end_time)
             ).count()
-        
-            if existing_reservations >= MAX_RESERVATIONS_PER_SLOT:
-                raise ValidationError(
-                    f"All our tables are booked at {formatted_time} on {formatted_date}. Please select a different time or date."
-                )
+
+            if overlapping_reservations >= MAX_RESERVATIONS_PER_SLOT:
+                formatted_date = selected_date.strftime('%d/%m/%Y')
+                formatted_time = selected_time.strftime('%H:%M')
+                raise ValidationError("All our tables are booked. Please select a different time or date.")
     
         return cleaned_data
 
