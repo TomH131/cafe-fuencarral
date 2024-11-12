@@ -46,10 +46,12 @@ class Reservation(models.Model):
     )
 
     def time_submitted(self):
+        # This timestamps the booking so we know when it was made
         self.timestamp = timezone.now()
         self.save()
 
     def __str__(self):
+        # This provides a description of the reservation for the admin page
         return f"Reservation for {self.first_name} {self.last_name} on {self.date.strftime('%d-%m-%Y')} at {self.time}"
 
     def save(self, *args, **kwargs):
@@ -65,6 +67,7 @@ class Reservation(models.Model):
         super(Reservation, self).save(*args, **kwargs)
 
 def generate_code(length=8, prefix="FUE-"):
+    # This assigns a randomly generated code to each reservation
     characters = string.ascii_uppercase + string.digits
     random_code = ''.join(random.choice(characters) for _ in range(length))
     return prefix + random_code

@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from datetime import datetime, date, time
 
 def reservation_step1_view(request):
+    # This is the first part of the reservation submission
     if request.method == 'POST':
         form = ReservationPart1Form(request.POST)
         if form.is_valid():
@@ -26,6 +27,7 @@ def reservation_step1_view(request):
     return render(request, 'reservations/reservation_step1.html', {'form': form})
 
 def reservation_step2_view(request):
+    # This is the second part of the reservation submission
     reservation_data = request.session.get('reservation_data', {})
 
     if request.method == 'POST':
@@ -52,8 +54,8 @@ def reservation_step2_view(request):
 
     return render(request, 'reservations/reservation_step2.html', {'form': form})
 
-
 def submission_view(request):
+    # This confirms the reservation and shows the details
     code = request.session.get('reservation_code')
 
     reservation = Reservation.objects.filter(code=code).first() if code else None
@@ -66,6 +68,7 @@ def submission_view(request):
     return render(request, 'reservations/submission.html', context)
 
 def search_view(request):
+    # This is to search for an existing reservation using the code given
     reservations = []
     error_message = None
 
@@ -92,6 +95,7 @@ def search_view(request):
     })
     
 def modify_view(request, code):
+    # This is to make any modifications to an existing reservation
     reservation = get_object_or_404(Reservation, code=code)
 
     if reservation.status != "Active":
@@ -143,6 +147,7 @@ def modify_view(request, code):
     })
 
 def cancel_view(request, code):
+    # This is to cancel any reservation
     reservation = get_object_or_404(Reservation, code=code)
 
     if reservation.status == "Active":
@@ -153,6 +158,7 @@ def cancel_view(request, code):
     return redirect('reservation:details', code=reservation.code)
 
 def details_view(request, code):
+    # This shows the details of the reservation with the option to modify or cancel it
     reservation = get_object_or_404(Reservation, code=code)
 
     can_modify = reservation.status == "Active"
@@ -165,4 +171,5 @@ def details_view(request, code):
     })
 
 def update_view(request, code):
+    # This shows confirmation the reservation has been updated
     return render(request, 'reservations/update.html')

@@ -23,7 +23,9 @@ class ReservationPart1Form(forms.ModelForm):
             raise ValidationError("The chosen date is in the past and cannot be used.")
         return selected_date
 
+    
     def clean(self):
+        # This is to stop any bookings within two hours of a fully booked time
         cleaned_data = super().clean()
         selected_date = cleaned_data.get('date')
         selected_time = cleaned_data.get('time')
