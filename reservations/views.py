@@ -102,7 +102,8 @@ def modify_view(request, code):
             'people': reservation.people,
             'date': reservation.date,
             'time': reservation.time
-        })
+        }, current_reservation=reservation)
+        
         form_part2 = ReservationPart2Form(request.POST, initial={
             'first_name': reservation.first_name,
             'last_name': reservation.last_name,
@@ -127,7 +128,8 @@ def modify_view(request, code):
             'people': reservation.people,
             'date': reservation.date,
             'time': reservation.time
-        })
+        }, current_reservation=reservation)
+
         form_part2 = ReservationPart2Form(initial={
             'first_name': reservation.first_name,
             'last_name': reservation.last_name,

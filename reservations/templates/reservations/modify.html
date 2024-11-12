@@ -9,12 +9,25 @@
         <h2>Reservation Details</h2>
         <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
             amendments.</p>
+
         {% if form_part1.errors %}
-        {% for field, errors in form_part1.errors.items %}
-        {% for error in errors %}
-        <p>{{ error }}</p>
-        {% endfor %}
-        {% endfor %}
+            <div>
+                {% for field, errors in form_part1.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% if form_part2.errors %}
+            <div>
+                {% for field, errors in form_part2.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
         {% endif %}
 
         <form method="POST">

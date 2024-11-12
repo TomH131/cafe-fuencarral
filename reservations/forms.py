@@ -6,6 +6,10 @@ from datetime import date, datetime, timedelta
 MAX_RESERVATIONS_PER_SLOT = 10
 
 class ReservationPart1Form(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.current_reservation = kwargs.pop('current_reservation', None)
+        super().__init__(*args, **kwargs)
+
     class Meta:
         model = Reservation
         fields = ['people', 'date', 'time']
@@ -31,12 +35,16 @@ class ReservationPart1Form(forms.ModelForm):
             overlapping_reservations = Reservation.objects.filter(
                 date=selected_date,
                 time__range=(start_time, end_time)
-            ).count()
+            )
+            if self.current_reservation:
+                overlapping_reservations = overlapping_reservations.exclude(id=self.current_reservation.id)
 
-            if overlapping_reservations >= MAX_RESERVATIONS_PER_SLOT:
+            if overlapping_reservations.count() >= MAX_RESERVATIONS_PER_SLOT:
                 formatted_date = selected_date.strftime('%d/%m/%Y')
                 formatted_time = selected_time.strftime('%H:%M')
-                raise ValidationError("All our tables are booked. Please select a different time or date.")
+                raise ValidationError(
+                    "All our tables are fully booked at that time. Please select a different time."
+                )
     
         return cleaned_data
 
