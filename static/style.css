@@ -43,7 +43,7 @@ header a {
 #spanish-cuisine {
     position: relative;
     background: url("images/spanish-cuisine.jpg") no-repeat center center/cover;
-    height: 17%;
+    height: 150px;
     color: gold;
     text-shadow:
         -1px -1px 0 black,

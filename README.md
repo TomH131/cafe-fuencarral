@@ -72,9 +72,35 @@ On the modify screen if the user clicks the 'Cancel' button they will go to this
 
 ![Details-cancellation](static/images/details-cancellation.png)
 
+
 ## Testing
 
 ### HTML
 
+The code was ran through [W3C validator](https://validator.w3.org/#validate_by_input) and only one error was found where '/' was placed in the wrong place of a paragraph tag. The error has been fixed.
+
 ### CSS
 
+No errors were found when the CSS code was ran through the [Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
+
+### Python
+
+The code was ran through [CI Python Linter](https://pep8ci.herokuapp.com/). The only errors were blank whitespaces and lines too long. All errors have been fixed.
+
+
+## Deployment
+
+The website has been deployed through Heroku.
+
+
+## Credits
+
+### Content
+
+ - The font was taken from [Google font](https://fonts.google.com/)
+ - Website icon taken from [Favicon](https://favicon.io/)
+ - The social media icons are from [Font Awesome](https://fontawesome.com/).
+
+### Media
+
+Images were taken from various website after searching in Google images

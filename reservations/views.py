@@ -4,6 +4,7 @@ from .models import Reservation
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, date, time
 
+
 def reservation_step1_view(request):
     # This is the first part of the reservation submission
     if request.method == 'POST':
@@ -12,10 +13,12 @@ def reservation_step1_view(request):
             cleaned_data = form.cleaned_data
 
             if cleaned_data.get('date'):
-                cleaned_data['date'] = cleaned_data['date'].strftime('%Y-%m-%d')
+                cleaned_data['date'] = cleaned_data['date'].strftime(
+                        '%Y-%m-%d')
 
             if cleaned_data.get('time'):
-                cleaned_data['time'] = cleaned_data['time'].strftime('%H:%M:%S')
+                cleaned_data['time'] = cleaned_data['time'].strftime(
+                        '%H:%M:%S')
 
             request.session['reservation_data'] = cleaned_data
 
@@ -24,7 +27,9 @@ def reservation_step1_view(request):
     else:
         form = ReservationPart1Form()
 
-    return render(request, 'reservations/reservation_step1.html', {'form': form})
+    return render(request, 'reservations/reservation_step1.html', {
+        'form': form})
+
 
 def reservation_step2_view(request):
     # This is the second part of the reservation submission
@@ -34,7 +39,6 @@ def reservation_step2_view(request):
         form = ReservationPart2Form(request.POST)
         if form.is_valid():
             reservation_data.update(form.cleaned_data)
-            
             reservation = Reservation.objects.create(
                 people=reservation_data['people'],
                 date=reservation_data['date'],
@@ -52,13 +56,16 @@ def reservation_step2_view(request):
     else:
         form = ReservationPart2Form()
 
-    return render(request, 'reservations/reservation_step2.html', {'form': form})
+    return render(request, 'reservations/reservation_step2.html', {
+        'form': form})
+
 
 def submission_view(request):
     # This confirms the reservation and shows the details
     code = request.session.get('reservation_code')
 
-    reservation = Reservation.objects.filter(code=code).first() if code else None
+    reservation = Reservation.objects.filter(
+        code=code).first() if code else None
 
     context = {
         'code': code,
@@ -66,6 +73,7 @@ def submission_view(request):
     }
 
     return render(request, 'reservations/submission.html', context)
+
 
 def search_view(request):
     # This is to search for an existing reservation using the code given
@@ -93,7 +101,8 @@ def search_view(request):
         'reservations': reservations,
         'error_message': error_message
     })
-    
+
+
 def modify_view(request, code):
     # This is to make any modifications to an existing reservation
     reservation = get_object_or_404(Reservation, code=code)
@@ -107,7 +116,6 @@ def modify_view(request, code):
             'date': reservation.date,
             'time': reservation.time
         }, current_reservation=reservation)
-        
         form_part2 = ReservationPart2Form(request.POST, initial={
             'first_name': reservation.first_name,
             'last_name': reservation.last_name,
@@ -118,11 +126,9 @@ def modify_view(request, code):
             reservation.people = form_part1.cleaned_data['people']
             reservation.date = form_part1.cleaned_data['date']
             reservation.time = form_part1.cleaned_data['time']
-            
             reservation.first_name = form_part2.cleaned_data['first_name']
             reservation.last_name = form_part2.cleaned_data['last_name']
             reservation.email = form_part2.cleaned_data['email']
-            
             reservation.save()
 
             return redirect('reservations:update', code=reservation.code)
@@ -146,6 +152,7 @@ def modify_view(request, code):
         'reservation': reservation
     })
 
+
 def cancel_view(request, code):
     # This is to cancel any reservation
     reservation = get_object_or_404(Reservation, code=code)
@@ -153,12 +160,13 @@ def cancel_view(request, code):
     if reservation.status == "Active":
         reservation.status = "Cancelled"
         reservation.save()
-        return render(request, 'reservations/cancel.html', {'reservation': reservation})
-    
+        return render(request, 'reservations/cancel.html', {
+            'reservation': reservation})
     return redirect('reservation:details', code=reservation.code)
 
+
 def details_view(request, code):
-    # This shows the details of the reservation with the option to modify or cancel it
+    # This shows the reservation details with the option to modify or cancel it
     reservation = get_object_or_404(Reservation, code=code)
 
     can_modify = reservation.status == "Active"
@@ -169,6 +177,7 @@ def details_view(request, code):
         'can_modify': can_modify,
         'can_cancel': can_cancel
     })
+
 
 def update_view(request, code):
     # This shows confirmation the reservation has been updated
