@@ -67,6 +67,13 @@ On the modify screen, if the user clicks the 'Cancel' button, they will go to th
 
 The two colours chosen for this website are dark red and gold, which nicely reflect the colours of the Spanish flag. A background image in the main section of every page also gives the website a more Spanish feel. 
 
+### Navigation
+
+Throughout the website, I have added links to other pages where appropriate to help with navigation. For example, after scrolling to the bottom of the menu page, I added a link to the reservation page, allowing the user to quickly jump to that page instead of scrolling back up to the top. Similarly, at the bottom of the homepage, if the user wants to learn more about what the cafe offers, there is a link to the menu page.
+
+![Reservation-link](static/images/reservation-link.png)
+![Menu-link](static/images/menu-link.png)
+
 
 ## Testing
 
@@ -122,6 +129,13 @@ Steps taken for deployment:
  - Added web: gunicorn cafefuencarral.wsgi to the Procfile.
  - Deployed the app.
 
+
+## Accessibility
+
+Running the homepage through Lighthouse shows there are no issues. The website was tested on both mobile and desktop, with very little variation in the scores on the other pages.
+
+![lighthouse-mobile](static/images/lighthouse-mobile.png)
+![lighthouse-desktop](static/images/lighthouse-desktop.png)
 
 ## Credits
 
