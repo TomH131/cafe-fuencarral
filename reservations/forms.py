@@ -66,7 +66,30 @@ class ReservationPart2Form(forms.ModelForm):
             'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
         }
 
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if first_name:
+            first_name = first_name.title()
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        if last_name:
+            last_name = last_name.title()
+        return last_name
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email:
+            email = email.lower()
+        return email
+
 
 class SearchForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Input your code'}))
+        'placeholder': 'Input your code'
+    }))
+    
+    def clean_code(self):
+        code = self.cleaned_data['code']
+        return code.upper()

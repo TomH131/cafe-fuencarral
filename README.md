@@ -17,19 +17,13 @@ There is a page for the menu where users can see what food and drinks we have on
 
 ### Reservation part 1
 
-The reservation form has been split into two parts so the customer can know for certain that their chosen time and date is available before they need to provide their contact information. This will allow for a better user experience. 
-
-Part 1 of the form asks for the date, time and how many people. All fields are mandatory so the user will not be able to continue until the form is completed. There are only 10 tables in the cafe so if we already have bookings at that time and date then an error message will show up after 'Next' is clicked and ask the user to select a different time. The user will also not be able to select a time within a two hour window of a fully booked slot. For example if we have 10 bookings at 5pm the next available booking will be 7pm.
-
-If the user selects a date in the past an error message will show letting them know this date cannot be selected.
+The reservation form has been split into two parts so the customer can know for certain that their chosen time and date is available before they need to provide their contact information. This will allow for a better user experience. Part 1 of the form asks for the date, time and how many people. 
 
 ![Reservation-part1](static/images/reservation-part1.png)
-![Reservation-error-message](static/images/reservation-error-message.png)
-![Date-error](static/images/date-error.png)
 
 ### Reservation part 2
 
-Once the user selects an appropriate time and clicks 'Next' they are taken to part 2 where they are asked to enter their first and last name and their email address. Then there's a 'Submit' button to complete the reservation form. Again all fields are mandatory so the user will not be able to continue until the form is completed.
+Once the user selects an appropriate time and clicks 'Next' they are taken to part 2 where they are asked to enter their first and last name and email address. Then there's a 'Submit' button to complete the reservation form.
 
 ![Reservation-part2](static/images/reservation-part2.png)
 
@@ -41,24 +35,21 @@ After clicking 'Submit' the user is taken to the submission confirmation screen.
 
 ### Reservation search
 
-If the user wishes to make changes to their reservation they will first be taken to this screen where they will need to search for their reservation using the randomly generated code they were given. If the user uses an incorrect code they will receive an error message letting them know that the code used does not exist.
+If the user wishes to make changes to their reservation they will first be taken to this screen where they will need to search for their reservation using the randomly generated code they were given. 
 
 ![Reservation-search](static/images/reservation-search.png)
-![Search-error-message](static/images/search-error-message.png)
 
 ### Reservation details
 
-After the user enters an existing code and clicks 'Search' they will go to the details screen. Here they will see details of their reservation along with two buttons, 'Modify' and 'Cancel'. Modify will take them to another screen and cancel will cancel the reservation. If the reservation has already been cancelled a message will show on the details screen to let the user know.
+After the user enters their code and clicks 'Search' they will go to the details screen. Here they will see details of their reservation along with two buttons, 'Modify' and 'Cancel'. Modify will take them to another screen and cancel will cancel the reservation. 
 
 ![Reservation-details](static/images/reservation-details.png)
-![Details-cancellation](static/images/details-cancellation.png)
 
 ### Reservation modify
 
-If the user clicks the 'Modify' button they will be taken to this screen where they are free to make any changes to their reservation. However if they change the time or date to a fully booked slot they will receive an error message, the same as before when making a new reservation. It is also the same here if they select a date in the past, they will receive an error message. Once they have made their changes they can click the 'Update' button to save their changes. 
+If the user clicks the 'Modify' button they will be taken to this screen where they are free to make any changes to their reservation. Once they have made their changes they can click the 'Update' button to save their changes. 
 
 ![Reservation-modify](static/images/reservation-modify.png)
-![Modify-error-message](static/images/modify-error-message.png)
 
 ### Update confirmation
 
@@ -86,6 +77,32 @@ No errors were found when the CSS code was ran through the [Jigsaw Validator](ht
 ### Python
 
 The code was ran through [CI Python Linter](https://pep8ci.herokuapp.com/). The only errors were blank whitespaces and lines too long. All errors have been fixed.
+
+### Manual testing
+
+All the fields in the form are mandatory so the form cannot be submitted without all the fields completed. This works for both part 1 and part 2 of the form. An error message will show up otherwise. 
+
+If the user selects a date in the past an error message will show letting them know this date cannot be selected.
+
+![Date-error](static/images/date-error.png)
+
+There are only 10 tables in the cafe so if we already have bookings at that time and date then an error message will show up after 'Next' is clicked and ask the user to select a different time. The user will also not be able to select a time within a two hour window of a fully booked slot. For example if we have 10 bookings at 5pm the next available booking will be 7pm.
+
+![Reservation-error-message](static/images/reservation-error-message.png)
+
+In part 2 of the form I tried submitting the names and email addresses with spaces at the front and at the end and the data is still accepted. Submitting the names or email address in all lowercase or all uppercase will convert them to the proper format. Tried to submit an email in the wrong format but an error messages pops up asking for it to be submitted in the correct format.
+
+If the user searches with an incorrect code they will receive an error message letting them know that the code used does not exist. As above, submitting the code with spaces either side still works. Similarly the code can also be submitted in lowercase and still be accepted as it gets converted to uppercase.
+
+![Search-error-message](static/images/search-error-message.png)
+
+On the modified screen if the user changes the time or date to a fully booked slot they will receive an error message, the same as before when making a new reservation. It is also the same here if they select a date in the past, they will receive an error message. 
+
+![Modify-error-message](static/images/modify-error-message.png)
+
+When searching for the reservation if it has already been cancelled a message will show on the details screen to let the user know.
+
+![Details-cancellation](static/images/details-cancellation.png)
 
 
 ## Deployment
