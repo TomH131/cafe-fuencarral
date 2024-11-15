@@ -1,5 +1,5 @@
 # Cafe Fuencarral
-This website is designed for people in Bristol, whether residents or visitors, who are interested in enjoying Spanish tapas, perhaps for the first time. It helps users to see the different types of tapas dishes we offer on our menu and provides the option to book a table. Whether they're specifically seeking Spanish food or just looking for a  place to eat in Bristol, this website makes discovering tapas easy.
+This website is designed for people in Bristol, whether residents or visitors, who are interested in enjoying Spanish tapas, perhaps for the first time. It shows users the different types of tapas dishes we offer on our menu and provides the option to book a table. Whether they're specifically seeking Spanish food or just looking for a  place to eat in Bristol, this website makes discovering tapas easy.
 
 
 ## User stories
@@ -8,10 +8,10 @@ This website is designed for people in Bristol, whether residents or visitors, w
 
  - As a customer I want to book a table at a specific time and date so that I can guarantee a table at the cafe when I arrive.
  - As a customer I want to modify an existing reservation so that I can easily make changes.
- - As a customer I want to cancel my reservation so that I can easily let the cafe know I won't be coming.
+ - As a customer I want to be able to cancel my reservation so that I can easily let the cafe know I won't be coming.
  - As a customer I want to safely share my name and email address so that they remain secure and inaccessible to other customers.
  - As a customer I want to be the only one to access my reservation so that other customers can't modify or cancel my booking.
- - As a customer I want to see the cafes menu so that I know what food and drinks they have on offer.
+ - As a customer I want to see the cafe's menu so that I know what food and drinks they have on offer.
 
 ### Restaurant Manager
 
@@ -42,7 +42,7 @@ The reservation form is split into two parts, so the customer can know for certa
 
 ### Reservation part 2
 
-Once the user selects an appropriate time and clicks 'Next', they are taken to Part 2, where they are asked to enter their first and last name and email address. There is then a 'Submit' button to complete the reservation form.
+Once the user selects an available time and clicks 'Next', they are taken to Part 2, where they are asked to enter their first and last name and email address. There is then a 'Submit' button to complete the reservation form.
 
 ![Reservation-part2](static/images/reservation-part2.png)
 
@@ -98,7 +98,7 @@ Throughout the website, I have added links to other pages where appropriate to h
 
 ### HTML
 
-The code was ran through the [W3C validator](https://validator.w3.org/#validate_by_input), and only one error was found where a '/' was placed in the wrong place in a paragraph tag. The error has been fixed.
+The code was put through the [W3C validator](https://validator.w3.org/#validate_by_input), and only one error was found where a '/' was placed in the wrong place in a paragraph tag. The error has been fixed.
 
 ### CSS
 
@@ -106,7 +106,7 @@ No errors were found when the CSS code was run through the [Jigsaw Validator](ht
 
 ### Python
 
-The code was ran through the [CI Python Linter](https://pep8ci.herokuapp.com/). The only errors were blank whitespaces and lines too long. All errors have been fixed.
+The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). The only errors were blank whitespaces and lines too long. All errors have been fixed.
 
 ### Manual testing
 
@@ -116,7 +116,7 @@ If the user selects a date in the past, an error message will let them know this
 
 ![Date-error](static/images/date-error.png)
 
-There are only **10 tables** in the cafe, so if all tables are already booked at a chosen time and date, an error message will show up after 'Next' is clicked, asking the user to select a different time. The user will also not be able to select a time within a two-hour window of a fully booked slot. For example, if there are 10 bookings at 5 pm, the next available booking will be at 7 pm.
+There are only **10 tables** in the cafe, so if all tables are already booked at a chosen time and date, an error message will show up after 'Next' is clicked, asking the user to select a different time. The user will also not be able to select a time within a two-hour window of a fully booked slot. For example, if there are 10 reservations at 5 pm, the next available reservation will be at 7 pm. Cancelled reservations do not count towards the 10 reservations. 
 
 ![Reservation-error-message](static/images/reservation-error-message.png)
 
@@ -126,7 +126,7 @@ If the user searches with an incorrect code, they will receive an error message 
 
 ![Search-error-message](static/images/search-error-message.png)
 
-On the modify screen, if the user changes the time or date to a fully booked slot, they will receive an error message, as with a new reservation. If they select a date in the past, they will also receive an error message.
+On the modify screen, if the user changes the time or date to a fully booked slot, they will receive an error message, as with a new reservation. If they select a date in the past, they will also receive an error message. If a customer has a reservation in a fully booked time slot, they can adjust their booking, such as moving it half an hour later. In this case, their original reservation will not be counted toward the maximum limit of 10 bookings for any time slot.
 
 ![Modify-error-message](static/images/modify-error-message.png)
 
