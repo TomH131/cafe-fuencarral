@@ -39,7 +39,8 @@ class ReservationPart1Form(forms.ModelForm):
 
             overlapping_reservations = Reservation.objects.filter(
                 date=selected_date,
-                time__range=(start_time, end_time)
+                time__range=(start_time, end_time),
+                status="Active"
             )
             if self.current_reservation:
                 overlapping_reservations = overlapping_reservations.exclude(
