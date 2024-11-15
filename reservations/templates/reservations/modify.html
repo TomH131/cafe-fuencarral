@@ -4,49 +4,48 @@
 {% block title %}Modify{% endblock %}
 
 {% block content %}
-<main>
-    <section class="box">
-        <h2>Reservation Details</h2>
-        <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
-            amendments.</p>
+<section class="box">
+    <h2>Reservation Details</h2>
+    <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
+        amendments.</p>
 
-        {% if form_part1.errors %}
-            <div>
-                {% for field, errors in form_part1.errors.items %}
-                    {% for error in errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
-        
-        {% if form_part2.errors %}
-            <div>
-                {% for field, errors in form_part2.errors.items %}
-                    {% for error in errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
+    {% if form_part1.errors %}
+    <div>
+        {% for field, errors in form_part1.errors.items %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <form method="POST">
-            {% csrf_token %}
-            <p><i class="fa-solid fa-people-group"></i> {{ form_part1.people }}</p>
-            <p><i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}</p>
-            <p><i class="fa-solid fa-clock"></i> {{ form_part1.time }}</p>
-            <p><i class="fa-solid fa-user"></i> {{ form_part2.first_name }}</p>
-            <p><i class="fa-solid fa-user"></i> {{ form_part2.last_name }}</p>
-            <p><i class="fa-solid fa-envelope"></i> {{ form_part2.email }}</p>
-            <button type="submit">Update</button>
-        </form>
-    </section>
+    {% if form_part2.errors %}
+    <div>
+        {% for field, errors in form_part2.errors.items %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <p><i class="fa-solid fa-people-group"></i> {{ form_part1.people }}</p>
+        <p><i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}</p>
+        <p><i class="fa-solid fa-clock"></i> {{ form_part1.time }}</p>
+        <p><i class="fa-solid fa-user"></i> {{ form_part2.first_name }}</p>
+        <p><i class="fa-solid fa-user"></i> {{ form_part2.last_name }}</p>
+        <p><i class="fa-solid fa-envelope"></i> {{ form_part2.email }}</p>
+        <button type="submit">Update</button>
+    </form>
+</section>
 
 
-    <section class="images">
-        <div id="croquetas"></div>
-        <div id="melon"></div>
-        <div id="peppers"></div>
-    </section>
-</main>
+<section class="images">
+    <div id="croquetas"></div>
+    <div id="melon"></div>
+    <div id="peppers"></div>
+</section>
+
 {% endblock %}

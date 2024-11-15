@@ -5,40 +5,39 @@
 
 {% block content %}
 
-<main>
-    <section class="box">
-        <h2>Reservations</h2>
-        <p>Please make your booking below.</p>
-        <form method="POST">
-            {% csrf_token %}
-            {% if form.errors %}
-            {% for field, errors in form.errors.items %}
-            {% for error in errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-            {% endfor %}
-            {% endif %}
-            <p><i class="fa-solid fa-people-group"></i> {{ form.people }}</p>
-            <p><i class="fa-regular fa-calendar-days"></i> {{ form.date }}</p>
-            <p><i class="fa-solid fa-clock"></i> {{ form.time }}</p>
-            <p>Please note if you wish to make a reservation for a group of more than 6 people you will need to contact
-                us direct. Click <a href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact
-                information.</p>
-            <button type="submit">Next</button>
-        </form>
+<section class="box">
+    <h2>Reservations</h2>
+    <p>Please make your booking below.</p>
+    <form method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        <p><i class="fa-solid fa-people-group"></i> {{ form.people }}</p>
+        <p><i class="fa-regular fa-calendar-days"></i> {{ form.date }}</p>
+        <p><i class="fa-solid fa-clock"></i> {{ form.time }}</p>
+        <p>Please note if you wish to make a reservation for a group of more than 6 people you will need to contact
+            us direct. Click <a href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact
+            information.</p>
+        <button type="submit">Next</button>
+    </form>
 
-    </section>
+</section>
 
-    <section class="box">
-        <p>Click <a href="{% url 'reservations:search' %}"><strong>here</strong></a> if you need to modify or cancel
-            an existing reservation</p>
-    </section>
+<section class="box">
+    <p>Click <a href="{% url 'reservations:search' %}"><strong>here</strong></a> if you need to modify or cancel
+        an existing reservation</p>
+</section>
 
-    <section class="images">
-        <div id="croquetas"></div>
-        <div id="melon"></div>
-        <div id="peppers"></div>
-    </section>
-</main>
+<section class="images">
+    <div id="croquetas"></div>
+    <div id="melon"></div>
+    <div id="peppers"></div>
+</section>
+
 
 {% endblock%}

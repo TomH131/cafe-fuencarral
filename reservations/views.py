@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationPart1Form, ReservationPart2Form, SearchForm
 from .models import Reservation
-from django.http import HttpResponse, JsonResponse
-from datetime import datetime, date, time
 
 
 def reservation_step1_view(request):
@@ -89,7 +87,7 @@ def search_view(request):
             if not reservations.exists():
                 error_message = "This code does not exist. Please try again."
 
-            elif reservations.exists():
+            else: 
                 reservation = reservations.first()
                 return redirect('reservations:details', code=reservation.code)
 

@@ -116,7 +116,7 @@ If the user selects a date in the past, an error message will let them know this
 
 ![Date-error](static/images/date-error.png)
 
-There are only 10 tables in the cafe, so if all tables are already booked at a chosen time and date, an error message will show up after 'Next' is clicked, asking the user to select a different time. The user will also not be able to select a time within a two-hour window of a fully booked slot. For example, if there are 10 bookings at 5 pm, the next available booking will be at 7 pm.
+There are only **10 tables** in the cafe, so if all tables are already booked at a chosen time and date, an error message will show up after 'Next' is clicked, asking the user to select a different time. The user will also not be able to select a time within a two-hour window of a fully booked slot. For example, if there are 10 bookings at 5 pm, the next available booking will be at 7 pm.
 
 ![Reservation-error-message](static/images/reservation-error-message.png)
 
@@ -144,8 +144,8 @@ Steps taken for deployment:
  - Gave the app a unique name and chose the appropriate region.
  - Revealed the config vars and added the variables.
  - Linked the new app to the repository in GitHub.
- - Installed the requirements.txt and Procfile.
- - Added web: gunicorn cafefuencarral.wsgi to the Procfile.
+ - Installed the `requirements.txt` and `Procfile`.
+ - Added `web: gunicorn cafefuencarral.wsgi` to the `Procfile`.
  - Deployed the app.
 
 

@@ -47,8 +47,6 @@ class ReservationPart1Form(forms.ModelForm):
                     id=self.current_reservation.id)
 
             if overlapping_reservations.count() >= MAX_RESERVATIONS_PER_SLOT:
-                formatted_date = selected_date.strftime('%d/%m/%Y')
-                formatted_time = selected_time.strftime('%H:%M')
                 raise ValidationError(
                     "All our tables are fully booked at that time."
                     "Please select a different time."

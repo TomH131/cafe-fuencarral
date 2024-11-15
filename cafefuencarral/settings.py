@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 if os.path.isfile('env.py'):
-    import env
+    pass
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '50mTqrmL0H')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-tomh131-cafefuencarral-pa3y8czuemu.ws-eu116.gitpod.io",

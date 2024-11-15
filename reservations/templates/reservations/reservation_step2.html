@@ -5,25 +5,23 @@
 
 {% block content %}
 
-<main>
-    <section class="box">
-        <h2>Confirm Reservation</h2>
-        <p>Please provide your contact information:</p>
+<section class="box">
+    <h2>Confirm Reservation</h2>
+    <p>Please provide your contact information:</p>
 
-        <form method="POST">
-            {% csrf_token %}
-            <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
-            <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
-            <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <form method="POST">
+        {% csrf_token %}
+        <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
+        <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
+        <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
+        <button type="submit">Submit</button>
+    </form>
+</section>
 
-    <section class="images">
-        <div id="croquetas"></div>
-        <div id="melon"></div>
-        <div id="peppers"></div>
-    </section>
-</main>
+<section class="images">
+    <div id="croquetas"></div>
+    <div id="melon"></div>
+    <div id="peppers"></div>
+</section>
 
 {% endblock%}

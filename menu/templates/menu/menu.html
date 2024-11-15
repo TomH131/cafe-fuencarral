@@ -5,80 +5,79 @@
 
 {% block content %}
 
-<main>
-    <section class="box">
-        <h2>Menu</h2>
-        <div class="menu-item">
-            <p><strong>Patatas Bravas</strong> </p>
-            <p>Fried potatoes in a spicy, tomato sauce.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Tortilla</strong></p>
-            <p>An omelette made with eggs and potatoes.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Padron peppers</strong></p>
-            <p>Fried peppers sprinkled with salt.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Croquettas de jamon</strong></p>
-            <p>Croquettes filled with serrano ham.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Pan con alioli</strong></p>
-            <p>Bread with an alioli dip.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Melon con jamon</strong></p>
-            <p>Melon with slices of serrano ham.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Paella Valenciana</strong></p>
-            <p>Paella with chicken and rabbit.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Huevos rotos</strong></p>
-            <p>Fried egg with fried potatoes and chorizo.</p>
-        </div>
-        <div class="menu-item">
-            <p><strong>Pulpo a la Gallega</strong></p>
-            <p>Fresh octopus with fried potatoes</p>
-        </div>
-    </section>
+<section class="box">
+    <h2>Menu</h2>
+    <div class="menu-item">
+        <p><strong>Patatas Bravas</strong> </p>
+        <p>Fried potatoes in a spicy, tomato sauce.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Tortilla</strong></p>
+        <p>An omelette made with eggs and potatoes.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Padron peppers</strong></p>
+        <p>Fried peppers sprinkled with salt.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Croquettas de jamon</strong></p>
+        <p>Croquettes filled with serrano ham.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Pan con alioli</strong></p>
+        <p>Bread with an alioli dip.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Melon con jamon</strong></p>
+        <p>Melon with slices of serrano ham.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Paella Valenciana</strong></p>
+        <p>Paella with chicken and rabbit.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Huevos rotos</strong></p>
+        <p>Fried egg with fried potatoes and chorizo.</p>
+    </div>
+    <div class="menu-item">
+        <p><strong>Pulpo a la Gallega</strong></p>
+        <p>Fresh octopus with fried potatoes</p>
+    </div>
+</section>
 
-    <section class="images">
-        <div id="pan" class="images"></div>
-        <div id="huevos" class="images"></div>
-        <div id="pulpo" class="images"></div>
-    </section>
+<section class="images">
+    <div id="pan" class="images"></div>
+    <div id="huevos" class="images"></div>
+    <div id="pulpo" class="images"></div>
+</section>
 
-    <section class="box">
-        <h2>Drinks Menu</h2>
-        <div class="drinks-item">
-            <h3><strong>Beer</strong></h3>
-            <p>Madri</p>
-            <p>San Miguel</p>
-        </div>
-        <div class="drinks-item">
-            <h3><strong>Wine</strong></h3>
-            <p>Red</p>
-            <p>White</p>
-            <p>Sangria</p>
-            <p>Tinto Verano</p>
-        </div>
-        <div class="drinks-item">
-            <h3><strong>Soft drinks</strong></h3>
-            <p>Still water</p>
-            <p>Orange juice</p>
-            <p>Fanta orange</p>
-            <p>Coca cola</p>
-        </div>
-    </section>
+<section class="box">
+    <h2>Drinks Menu</h2>
+    <div class="drinks-item">
+        <h3><strong>Beer</strong></h3>
+        <p>Madri</p>
+        <p>San Miguel</p>
+    </div>
+    <div class="drinks-item">
+        <h3><strong>Wine</strong></h3>
+        <p>Red</p>
+        <p>White</p>
+        <p>Sangria</p>
+        <p>Tinto Verano</p>
+    </div>
+    <div class="drinks-item">
+        <h3><strong>Soft drinks</strong></h3>
+        <p>Still water</p>
+        <p>Orange juice</p>
+        <p>Fanta orange</p>
+        <p>Coca cola</p>
+    </div>
+</section>
 
-    <section class="box">
-        <h2>Want to book a table?</h2>
-        <p>Click <a href="{% url 'reservations:reservations' %}"><strong>here</strong></a> to book a reservation.</p>
-    </section>
-</main>
+<section class="box">
+    <h2>Want to book a table?</h2>
+    <p>Click <a href="{% url 'reservations:reservations' %}"><strong>here</strong></a> to book a reservation.</p>
+</section>
 
-{% endblock%}}
+
+{% endblock%}
