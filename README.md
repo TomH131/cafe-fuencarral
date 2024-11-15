@@ -1,6 +1,25 @@
 # Cafe Fuencarral
 This website is designed for people in Bristol, whether residents or visitors, who are interested in enjoying Spanish tapas, perhaps for the first time. It helps users to see the different types of tapas dishes we offer on our menu and provides the option to book a table. Whether they're specifically seeking Spanish food or just looking for a  place to eat in Bristol, this website makes discovering tapas easy.
 
+
+## User stories
+
+### Customers
+
+ - As a customer I want to book a table at a specific time and date so that I can guarantee a table at the cafe when I arrive.
+ - As a customer I want to modify an existing reservation so that I can easily make changes.
+ - As a customer I want to cancel my reservation so that I can easily let the cafe know I won't be coming.
+ - As a customer I want to safely share my name and email address so that they remain secure and inaccessible to other customers.
+ - As a customer I want to be the only one to access my reservation so that other customers can't modify or cancel my booking.
+ - As a customer I want to see the cafes menu so that I know what food and drinks they have on offer.
+
+### Restaurant Manager
+
+ - As a restaurant manager I want to view reservations so that I know how many customers are arriving at a given time on a given day.
+ - As a restaurant manager I want to see cancellations so that I can better service the cafe and other customers can book the new free slot.
+ - As a restaurant manager I want to be the only one able to view all reservations so that customer details remain protected and other reservations stay confidential.
+
+
 ## Features
 
 ### Hero image and navbar
