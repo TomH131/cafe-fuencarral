@@ -17,9 +17,21 @@
         {% endfor %}
         {% endfor %}
         {% endif %}
-        <p><i class="fa-solid fa-people-group"></i> {{ form.people }}</p>
-        <p><i class="fa-regular fa-calendar-days"></i> {{ form.date }}</p>
-        <p><i class="fa-solid fa-clock"></i> {{ form.time }}</p>
+        <p>
+            <label for="id_people" aria-label="People">
+                <i class="fa-solid fa-people-group"></i>{{ form.people }}
+            </label>
+        </p>
+        <p>
+            <label for="id_date" aria-label="Date">
+                <i class="fa-regular fa-calendar-days"></i>{{ form.date }}
+            </label>
+        </p>
+        <p>
+            <label for="id_time" aria-label="Time">
+                <i class="fa-solid fa-clock"></i>{{ form.time }}
+            </label>
+        </p>
         <p>Please note if you wish to make a reservation for a group of more than 6 people you will need to contact
             us direct. Click <a href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact
             information.</p>

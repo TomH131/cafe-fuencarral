@@ -31,12 +31,36 @@
 
     <form method="POST">
         {% csrf_token %}
-        <p><i class="fa-solid fa-people-group"></i> {{ form_part1.people }}</p>
-        <p><i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}</p>
-        <p><i class="fa-solid fa-clock"></i> {{ form_part1.time }}</p>
-        <p><i class="fa-solid fa-user"></i> {{ form_part2.first_name }}</p>
-        <p><i class="fa-solid fa-user"></i> {{ form_part2.last_name }}</p>
-        <p><i class="fa-solid fa-envelope"></i> {{ form_part2.email }}</p>
+        <p>
+            <label for="id_people" aria-label="People">
+                <i class="fa-solid fa-people-group"></i> {{ form_part1.people }}
+            </label>
+        </p>
+        <p>
+            <label for="id_date" aria-label="Date">
+                <i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}
+            </label>
+        </p>
+        <p>
+            <label for="id_time" aria-label="Time">
+                <i class="fa-solid fa-clock"></i> {{ form_part1.time }}
+            </label>
+        </p>
+        <p>
+            <label for="id_first_name" aria-label="First Name">
+                <i class="fa-solid fa-user"></i> {{ form_part2.first_name }}
+            </label>
+        </p>
+        <p>
+            <label for="id_last_name" aria-label="Last Name">
+                <i class="fa-solid fa-user"></i> {{ form_part2.last_name }}
+            </label>
+        </p>
+        <p>
+            <label for="id_email" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i> {{ form_part2.email }}
+            </label>
+        </p>
         <button type="submit">Update</button>
     </form>
 </section>

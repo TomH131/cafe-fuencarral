@@ -9,11 +9,29 @@
     <h2>Confirm Reservation</h2>
     <p>Please provide your contact information:</p>
 
+    <p>
+        <label for="id_people" aria-label="People">
+            <i class="fa-solid fa-people-group"></i>{{ form.people }}
+        </label>
+    </p>
+
     <form method="POST">
         {% csrf_token %}
-        <p><i class="fa-solid fa-user"></i> {{ form.first_name }}</p>
-        <p><i class="fa-solid fa-user"></i> {{ form.last_name }}</p>
-        <p><i class="fa-solid fa-envelope"></i> {{ form.email }}</p>
+        <p>
+            <label for="id_first_name" aria-label="First Name">
+                <i class="fa-solid fa-user"></i> {{ form.first_name }}
+            </label>
+        </p>
+        <p>
+            <label for="id_last_name" aria-label="Last Name">
+                <i class="fa-solid fa-user"></i> {{ form.last_name }}
+            </label>
+        </p>
+        <p>
+            <label for="id_email" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i> {{ form.email }}
+            </label>
+        </p>
         <button type="submit">Submit</button>
     </form>
 </section>

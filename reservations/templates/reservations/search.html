@@ -12,7 +12,11 @@
     {% endif %}
     <form method="post">
         {% csrf_token %}
-        <p><i class="fa-solid fa-key"></i> {{ form.code }}</p>
+        <p>
+            <label for="id_code" aria-label="Code">
+                <i class="fa-solid fa-key"></i> {{ form.code }}
+            </label>
+        </p>
         <button type="submit"><strong>Search</strong></button>
     </form>
 
