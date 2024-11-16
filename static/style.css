@@ -14,6 +14,13 @@ main {
     padding-bottom: 10px;
 }
 
+.picture {
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
 /* Header */
 h1 {
     padding: 10px;
@@ -74,26 +81,14 @@ p {
 
 #paella {
     background: url("images/paella-valenciana.jpg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #patatas {
     background: url("images/patatas-bravas.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #tortilla {
     background: url("images/tortilla.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 /* menu */
@@ -104,26 +99,14 @@ p {
 
 #pan {
     background: url("images/pan-con-alioli.jpg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #huevos {
     background: url("images/huevos-rotos.jpg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #pulpo {
     background: url("images/pulpo-a-la-gallega.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 /* reservation form */
@@ -177,26 +160,14 @@ button:hover {
 
 #croquetas {
     background: url("images/croquetas-de-jamon-serrano.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #melon {
     background: url("images/melon-con-jamon.jpg") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 #peppers {
     background: url("images/padron-peppers.webp") no-repeat center center/cover;
-    width: 80%;
-    height: 150px;
-    margin: 10px auto;
-    border-radius: 5%;
 }
 
 /* Contact us page */
@@ -248,15 +219,7 @@ footer a {
         justify-content: space-between;
     }
 
-    #paella,
-    #patatas,
-    #tortilla,
-    #croquetas,
-    #melon,
-    #peppers,
-    #pan,
-    #huevos,
-    #pulpo {
+    .picture {
         height: 200px;
         width: 30%;
     }
@@ -264,16 +227,7 @@ footer a {
 
 /* Media query for tablets and larger (1024px and up) */
 @media screen and (min-width: 1024px) {
-
-    #paella,
-    #patatas,
-    #tortilla,
-    #croquetas,
-    #melon,
-    #peppers,
-    #pan,
-    #huevos,
-    #pulpo {
+    .picture {
         height: 300px;
     }
 }
