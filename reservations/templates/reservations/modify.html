@@ -13,7 +13,9 @@
     <div>
         {% for field, errors in form_part1.errors.items %}
         {% for error in errors %}
-        <p>{{ error }}</p>
+        <p class="error-message">
+            {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
+        </p>
         {% endfor %}
         {% endfor %}
     </div>
@@ -23,7 +25,9 @@
     <div>
         {% for field, errors in form_part2.errors.items %}
         {% for error in errors %}
-        <p>{{ error }}</p>
+        <p class="error-message">
+            {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
+        </p>
         {% endfor %}
         {% endfor %}
     </div>

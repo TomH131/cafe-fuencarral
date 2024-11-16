@@ -9,12 +9,6 @@
     <h2>Confirm Reservation</h2>
     <p>Please provide your contact information:</p>
 
-    <p>
-        <label for="id_people" aria-label="People">
-            <i class="fa-solid fa-people-group"></i>{{ form.people }}
-        </label>
-    </p>
-
     <form method="POST">
         {% csrf_token %}
         <p>

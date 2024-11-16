@@ -48,7 +48,7 @@ class ReservationPart1Form(forms.ModelForm):
 
             if overlapping_reservations.count() >= MAX_RESERVATIONS_PER_SLOT:
                 raise ValidationError(
-                    "All our tables are fully booked at that time."
+                    "All our tables are fully booked at that time. "
                     "Please select a different time."
                 )
 

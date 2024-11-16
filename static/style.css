@@ -110,6 +110,13 @@ p {
 }
 
 /* reservation form */
+.error-message {
+    background-color: maroon;
+    color: gold;
+    width: 80%;
+    margin: 10px auto;
+}
+
 label {
     padding: 5px;
     font-size: 85%;
