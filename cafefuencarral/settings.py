@@ -30,8 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '50mTqrmL0H')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "8000-tomh131-cafefuencarral-pa3y8czuemu.ws-eu116.gitpod.io",
-    "cafe-fuencarral.herokuapp.com",
+    "127.0.0.1",
     ".herokuapp.com"
 ]
 
@@ -139,8 +138,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-tomh131-cafefuencarral-pa3y8czuemu.ws-eu116.gitpod.io',
-    'https://cafe-fuencarral.herokuapp.com'
+    "https://localhost",
+    "https://*.herokuapp.com"
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
