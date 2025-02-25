@@ -1,0 +1,240 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+
+main {
+    background: url("images/background-image.avif");
+    color: darkred;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.picture {
+    width: 80%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 5%;
+}
+
+/* Header */
+h1 {
+    padding: 10px;
+    font-size: 200%;
+}
+
+#navbar {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    font-size: 95%;
+    font-weight: bold;
+    background-color: darkred;
+}
+
+header a {
+    text-decoration: none;
+    color: gold;
+    background-color: rgb(139, 0, 0, 0.2);
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+}
+
+#spanish-cuisine {
+    position: relative;
+    background: url("images/spanish-cuisine.jpg") no-repeat center center/cover;
+    height: 150px;
+    color: gold;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+/* Main content */
+.box {
+    background-color: gold;
+    padding: 10px;
+    border-radius: 5%;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+h2,
+p {
+    padding: 5px;
+}
+
+.images {
+    background-color: gold;
+    padding: 10px;
+}
+
+#paella {
+    background: url("images/paella-valenciana.jpg") no-repeat center center/cover;
+}
+
+#patatas {
+    background: url("images/patatas-bravas.webp") no-repeat center center/cover;
+}
+
+#tortilla {
+    background: url("images/tortilla.webp") no-repeat center center/cover;
+}
+
+/* menu */
+.menu-item,
+.drinks.item {
+    padding: 5px;
+}
+
+#pan {
+    background: url("images/pan-con-alioli.jpg") no-repeat center center/cover;
+}
+
+#huevos {
+    background: url("images/huevos-rotos.jpg") no-repeat center center/cover;
+}
+
+#pulpo {
+    background: url("images/pulpo-a-la-gallega.webp") no-repeat center center/cover;
+}
+
+/* reservation form */
+.error-message {
+    background-color: maroon;
+    color: gold;
+    width: 80%;
+    margin: 10px auto;
+}
+
+label {
+    padding: 5px;
+    font-size: 85%;
+}
+
+input,
+select {
+    margin: 5px;
+    width: 70%;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    height: 25px;
+}
+
+button {
+    background-color: darkred;
+    color: gold;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    border-color: black;
+    padding: 8px 20px;
+    margin: 0;
+    text-align: center;
+    width: auto;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: gold;
+    color: darkred;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+#buttons form {
+    margin: 0;
+}
+
+#croquetas {
+    background: url("images/croquetas-de-jamon-serrano.webp") no-repeat center center/cover;
+}
+
+#melon {
+    background: url("images/melon-con-jamon.jpg") no-repeat center center/cover;
+}
+
+#peppers {
+    background: url("images/padron-peppers.webp") no-repeat center center/cover;
+}
+
+/* Contact us page */
+#contact-socials {
+    list-style: none;
+}
+
+#contact-socials a {
+    text-decoration: none;
+    color: darkred;
+}
+
+#contact-socials a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: darkred;
+}
+
+#social-media {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+footer a {
+    color: gold;
+}
+
+/* Media query for tablets and larger (768px and up) */
+@media screen and (min-width: 768px) {
+
+    header a {
+        font-size: 140%;
+    }
+
+    .box {
+        width: 40%;
+        margin: 20px auto;
+    }
+
+    .images {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .picture {
+        height: 200px;
+        width: 30%;
+    }
+}
+
+/* Media query for tablets and larger (1024px and up) */
+@media screen and (min-width: 1024px) {
+    .picture {
+        height: 300px;
+    }
+}
