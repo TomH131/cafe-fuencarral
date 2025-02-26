@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Logout{% endblock%} 
+{% block content %}
+
+<section class="box">
+  <h2>You're now logged out.</h2>
+  <p>Please click <a href="{% url 'reservations:login' %}"><strong>here</strong></a> to log in </p>
+  
+</section>
+
+<section class="images">
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
+</section>
+
+{% endblock%}

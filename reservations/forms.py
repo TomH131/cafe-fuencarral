@@ -58,16 +58,6 @@ class ReservationForm(forms.ModelForm):
         return cleaned_data
 
 
-class SearchForm(forms.Form):
-    code = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Input your code'
-    }))
-    
-    def clean_code(self):
-        code = self.cleaned_data['code']
-        return code.upper()
-
-
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 

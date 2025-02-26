@@ -35,6 +35,7 @@ class Reservation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
+    password = models.CharField(max_length=25)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
         max_length=20,
@@ -57,4 +58,7 @@ class Reservation(models.Model):
 
         if not self.status:
             self.status = "Active"
+
+        self.password = make_password(self.password)
+        
         super(Reservation, self).save(*args, **kwargs)

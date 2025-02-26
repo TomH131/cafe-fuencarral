@@ -2,68 +2,132 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Meta tags -->
-    <meta name="description" content="Bringing the exciting flavours of Spanish tapas to the city of Bristol.">
-    <meta name="keywords" content="cafe fuencarral, bristol tapas, bristol restaurants, bristol food, bristol cafe">
+    <meta
+      name="description"
+      content="Bringing the exciting flavours of Spanish tapas to the city of Bristol."
+    />
+    <meta
+      name="keywords"
+      content="cafe fuencarral, bristol tapas, bristol restaurants, bristol food, bristol cafe"
+    />
 
     <!-- Title -->
     <title>Cafe Fuencarral</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'favicon/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicon/favicon-32x32.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicon/favicon-16x16.png' %}"
+    />
 
     <!-- CSS stylesheet -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header>
-        <section id="spanish-cuisine">
-            <h1><a href="{% url 'home:home' %}">Cafe Fuencarral</a></h1>
-        </section>
-        <section>
-            <nav>
-                <ul id="navbar">
-                    <li><a href="{% url 'home:home' %}">Home</a></li>
-                    <li><a href="{% url 'menu:menu' %}">Menu</a></li>
-                    <li><a href="{% url 'reservations:reservations' %}">Reservations</a></li>
-                    <li><a href="{% url 'contactus:contactus' %}">Contact us</a></li>
-                </ul>
-            </nav>
-        </section>
-    </header>
-    <main>
-        {% block content %}
+      <section id="spanish-cuisine">
+        <h1><a href="{% url 'home:home' %}">Cafe Fuencarral</a></h1>
+      </section>
+      <section>
+        <nav>
+          <ul id="navbar">
+            <li><a href="{% url 'home:home' %}">Home</a></li>
+            <li><a href="{% url 'menu:menu' %}">Menu</a></li>
 
-        {% endblock %}
-    </main>
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'reservations:reservations' %}">Reservations</a>
+            </li>
+            <li>
+              <form method="POST" action="{% url 'reservations:logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+            {% else %}
+            <li><a href="{% url 'reservations:signup' %}">Reservations</a></li>
+            {% endif %}
+
+            <li><a href="{% url 'contactus:contactus' %}">Contact us</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <section id="login-status">
+        {% if user.is_authenticated %}
+          <p>Welcome, {{ user.username }}! You are logged in.</p>
+        {% else %}
+          <p>You are not logged in. Please <a href="{% url 'reservations:signup' %}">sign up</a> or <a href="{% url 'reservations:login' %}">log in</a>.</p>
+        {% endif %}
+      </section>
+    </header>
+
+    <main>{% block content %} {% endblock %}</main>
+
     <footer>
-        <ul id="social-media">
-            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a>
-            </li>
-            <li><a href="https://x.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-twitter"></i></a>
-            </li>
-            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page (opens in a new tab)"><i
-                        class="fa-brands fa-instagram"></i></a></li>
-            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Youtube page (opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
-            </li>
-        </ul>
+      <ul id="social-media">
+        <li>
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Facebook page (opens in a new tab)"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://x.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our X page (opens in a new tab)"
+            ><i class="fa-brands fa-twitter"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Instagram page (opens in a new tab)"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Youtube page (opens in a new tab)"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
+        </li>
+      </ul>
     </footer>
 
     <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d5d2033eb6.js" crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://kit.fontawesome.com/d5d2033eb6.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
