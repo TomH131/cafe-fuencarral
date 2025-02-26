@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import time
 from django.utils import timezone
+from django.contrib.auth.models import User  # Import the User model
+from django.contrib.auth.hashers import make_password
 
 class Reservation(models.Model):
     NUMBER_OF_PEOPLE_CHOICES = [
@@ -29,6 +31,7 @@ class Reservation(models.Model):
         ("Cancelled", "Cancelled"),
     ]
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Add a user field
     people = models.IntegerField(choices=NUMBER_OF_PEOPLE_CHOICES)
     date = models.DateField()
     time = models.TimeField(choices=TIME_OF_DAY_CHOICES)
@@ -59,6 +62,7 @@ class Reservation(models.Model):
         if not self.status:
             self.status = "Active"
 
-        self.password = make_password(self.password)
+        if self.password:  # If there's a password provided
+            self.password = make_password(self.password)  # Hash the password
         
-        super(Reservation, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)  # Call the parent class's save method once

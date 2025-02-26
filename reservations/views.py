@@ -83,7 +83,7 @@ def cancel_view(request):
 
 @login_required
 def details_view(request):
-    reservation = Reservation.objects.filter(user=request.user).first()
+    reservation = Reservation.objects.get(user=request.user)
     
     can_modify = reservation.status == "Active" if reservation else False
     can_cancel = reservation.status == "Active" if reservation else False
