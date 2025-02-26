@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from .views import login_view
+from . import views
 
 app_name = 'reservations'
 

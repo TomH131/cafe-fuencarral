@@ -9,21 +9,9 @@
     <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
         amendments.</p>
 
-    {% if form_part1.errors %}
+    {% if form.errors %}
     <div>
-        {% for field, errors in form_part1.errors.items %}
-        {% for error in errors %}
-        <p class="error-message">
-            {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
-        </p>
-        {% endfor %}
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if form_part2.errors %}
-    <div>
-        {% for field, errors in form_part2.errors.items %}
+        {% for field, errors in form.errors.items %}
         {% for error in errors %}
         <p class="error-message">
             {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
@@ -37,38 +25,32 @@
         {% csrf_token %}
         <p>
             <label for="id_people" aria-label="People">
-                <i class="fa-solid fa-people-group"></i> {{ form_part1.people }}
+                <i class="fa-solid fa-people-group"></i> {{ form.people }}
             </label>
         </p>
         <p>
             <label for="id_date" aria-label="Date">
-                <i class="fa-regular fa-calendar-days"></i> {{ form_part1.date }}
+                <i class="fa-regular fa-calendar-days"></i> {{ form.date }}
             </label>
         </p>
         <p>
             <label for="id_time" aria-label="Time">
-                <i class="fa-solid fa-clock"></i> {{ form_part1.time }}
+                <i class="fa-solid fa-clock"></i> {{ form.time }}
             </label>
         </p>
         <p>
             <label for="id_first_name" aria-label="First Name">
-                <i class="fa-solid fa-user"></i> {{ form_part2.first_name }}
+                <i class="fa-solid fa-user"></i> {{ form.first_name }}
             </label>
         </p>
         <p>
             <label for="id_last_name" aria-label="Last Name">
-                <i class="fa-solid fa-user"></i> {{ form_part2.last_name }}
-            </label>
-        </p>
-        <p>
-            <label for="id_email" aria-label="Email">
-                <i class="fa-solid fa-envelope"></i> {{ form_part2.email }}
+                <i class="fa-solid fa-user"></i> {{ form.last_name }}
             </label>
         </p>
         <button type="submit">Update</button>
     </form>
 </section>
-
 
 <section class="images">
     <div id="croquetas" class="picture"></div>

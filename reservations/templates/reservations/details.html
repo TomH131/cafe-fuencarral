@@ -17,13 +17,13 @@
 
     <div id="buttons">
         {% if can_modify %}
-        <form action="{% url 'reservations:modify' reservation.code %}" method="get">
+        <form action="{% url 'reservations:modify' %}" method="get">
             <button type="submit">Modify</button>
         </form>
         {% endif %}
 
         {% if can_cancel %}
-        <form action="{% url 'reservations:cancel' reservation.code %}" method="post">
+        <form action="{% url 'reservations:cancel' %}" method="post">
             {% csrf_token %}
             <button type="submit">Cancel</button>
         </form>

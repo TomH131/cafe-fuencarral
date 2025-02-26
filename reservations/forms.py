@@ -2,7 +2,9 @@ from django import forms
 from .models import Reservation
 from django.core.exceptions import ValidationError
 from datetime import date, datetime, timedelta
-from django.contrib.auth.models import User, AuthenticationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+
 
 MAX_RESERVATIONS_PER_SLOT = 10
 
