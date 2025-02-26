@@ -6,25 +6,26 @@
   <p>Please provide your details below to create an account</p>
   <form method="POST">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     <p>
-      <label for="id_first_name" aria-label="First Name">
-        <i class="fa-solid fa-user"></i> {{ form.first_name }}
-      </label>
+      <label for="id_first_name"></label>
+      <i class="fa-solid fa-user"></i> {{ form.first_name }}
+      {{ form.first_name.errors }}
     </p>
     <p>
-      <label for="id_last_name" aria-label="Last Name">
-        <i class="fa-solid fa-user"></i> {{ form.last_name }}
-      </label>
+      <label for="id_last_name"></label>
+      <i class="fa-solid fa-user"></i> {{ form.last_name }}
+      {{ form.last_name.errors }}
     </p>
     <p>
-      <label for="id_email" aria-label="Email">
-        <i class="fa-solid fa-envelope"></i> {{ form.email }}
-      </label>
+      <label for="id_email"></label>
+      <i class="fa-solid fa-envelope"></i> {{ form.email }}
+      {{ form.email.errors }}
     </p>
     <p>
-      <label for="id_password" aria-label="Password">
-        <i class="fa-solid fa-key"></i> {{ form.password }}
-      </label>
+      <label for="id_password"></label>
+      <i class="fa-solid fa-key"></i> {{ form.password }}
+      {{ form.password.errors }}
     </p>
     <p>
       If you already have an account created click

@@ -1,44 +1,53 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}Submission{% endblock %}
-
-{% block content %}
-
+{% extends "base.html" %} {% load static %} {% block title %}Submission{%
+endblock %} {% block content %}
 
 <section class="box">
-    <div>
-        <h2>Booking confirmed</h2>
-        <p>We look forward to seeing you.</p>
-        <p>You will also receive a booking confirmation email shortly.</p>
-    </div>
+  <div>
+    <h2>Booking confirmed</h2>
+    <p>We look forward to seeing you.</p>
+    <p>You will also receive a booking confirmation email shortly.</p>
+  </div>
 </section>
 <section class="box">
-    <div>
-        {% if reservation %}
-        <h3>Reservation Details</h3>
-        <p>Reservation booked at {{ reservation.time }} on {{ reservation.date }} for {{ reservation.people }}
-            people.</p>
+  <div>
+    {% if reservation %}
+    <h3>Reservation Details</h3>
+    <p>
+      Reservation booked at {{ reservation.time }} on {{ reservation.date }} for
+      {{ reservation.people }} people.
+    </p>
+    <p>
+      <strong>Reserved for:</strong> {{ reservation.first_name }} {{ reservation.last_name }}
+    </p>
+    <p><strong>Email:</strong> {{ reservation.email }}</p>
+    {% else %}
+    <p>
+      No reservation details available. Please check your booking confirmation
+      email for further details.
+    </p>
+    {% endif %}
 
-        <p><strong>Reserved for:</strong> {{ reservation.first_name }} {{ reservation.last_name }}</p>
-        <p><strong>Email:</strong> {{ reservation.email }}</p>
-        {% endif %}
-        <p>Please note that we will need the table returned within two hours of your booking time.</p>
-    </div>
+    <p>
+      Please note that we will need the table returned within two hours of your
+      booking time.
+    </p>
+  </div>
 </section>
 
 <section class="box">
-    <div>
-        <p>Click <a href="{% url 'reservations:modify' %}"><strong>here</strong></a> to modify or cancel your
-            reservation.</p>
-    </div>
+  <div>
+    <p>
+      Click
+      <a href="{% url 'reservations:modify' %}"><strong>here</strong></a> to
+      modify or cancel your reservation if needed.
+    </p>
+  </div>
 </section>
 
 <section class="images">
-    <div id="croquetas" class="picture"></div>
-    <div id="melon" class="picture"></div>
-    <div id="peppers" class="picture"></div>
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
 </section>
-
 
 {% endblock%}

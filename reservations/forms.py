@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from datetime import date, datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.text import slugify
 
 
 MAX_RESERVATIONS_PER_SLOT = 10
@@ -29,22 +30,22 @@ class ReservationForm(forms.ModelForm):
         return selected_date
 
     def clean(self):
-        # This is to stop any bookings within two hours of a fully booked time
         cleaned_data = super().clean()
         selected_date = cleaned_data.get('date')
         selected_time = cleaned_data.get('time')
+
         if selected_date and selected_time:
-            start_time = (
-                datetime.combine(selected_date, selected_time)
-                - timedelta(hours=1.5)).time()
-            end_time = (datetime.combine(selected_date, selected_time)
-                        + timedelta(hours=1.5)).time()
+            selected_datetime = datetime.combine(selected_date, selected_time)
+
+            start_time = (selected_datetime - timedelta(hours=1.5)).time()
+            end_time = (selected_datetime + timedelta(hours=1.5)).time()
 
             overlapping_reservations = Reservation.objects.filter(
                 date=selected_date,
                 time__range=(start_time, end_time),
                 status="Active"
-            )
+        )
+
             if self.current_reservation:
                 overlapping_reservations = overlapping_reservations.exclude(
                     id=self.current_reservation.id)
@@ -53,9 +54,11 @@ class ReservationForm(forms.ModelForm):
                 raise ValidationError(
                     "All our tables are fully booked at that time. "
                     "Please select a different time."
-                )
+            )
 
         return cleaned_data
+
+
 
 
 class SignupForm(forms.ModelForm):
@@ -73,15 +76,28 @@ class SignupForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = self.cleaned_data['email']
+        user.username = slugify(self.cleaned_data['email'].split('@')[0])  # Generate username
         user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
         return user
     
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': True}), label="Email")
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'autofocus': True}),
+        label="Email"
+    )
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
-    def clean_username(self):
-        return self.cleaned_data.get("username").lower()
+    def clean(self):
+        email = self.cleaned_data.get("username").lower()
+        password = self.cleaned_data.get("password")
+
+        if email and password:
+            self.user_cache = authenticate(username=email, password=password)
+            if self.user_cache is None:
+                raise forms.ValidationError("Invalid email or password.")
+            elif not self.user_cache.is_active:
+                raise forms.ValidationError("This account is inactive.")
+
+        return self.cleaned_data

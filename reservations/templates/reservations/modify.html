@@ -1,61 +1,59 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}Modify{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Modify{% endblock
+%} {% block content %}
 <section class="box">
-    <h2>Reservation Details</h2>
-    <p>Feel free to make any changes below and make sure to click 'Update' once you're done to confirm the
-        amendments.</p>
+  <h2>Reservation Details</h2>
+  <p>
+    Feel free to make any changes below and make sure to click 'Update' once
+    you're done to confirm the amendments.
+  </p>
 
-    {% if form.errors %}
-    <div>
-        {% for field, errors in form.errors.items %}
-        {% for error in errors %}
-        <p class="error-message">
-            {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
-        </p>
-        {% endfor %}
-        {% endfor %}
-    </div>
-    {% endif %}
+  {% if form.errors %}
+  <div class="error-messages">
+    <h3>Please fix the following errors:</h3>
+    <ul>
+      {% for field, errors in form.errors.items %} {% for error in errors %}
+      <li>{{ error }}</li>
+      {% endfor %} {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <p>
-            <label for="id_people" aria-label="People">
-                <i class="fa-solid fa-people-group"></i> {{ form.people }}
-            </label>
-        </p>
-        <p>
-            <label for="id_date" aria-label="Date">
-                <i class="fa-regular fa-calendar-days"></i> {{ form.date }}
-            </label>
-        </p>
-        <p>
-            <label for="id_time" aria-label="Time">
-                <i class="fa-solid fa-clock"></i> {{ form.time }}
-            </label>
-        </p>
-        <p>
-            <label for="id_first_name" aria-label="First Name">
-                <i class="fa-solid fa-user"></i> {{ form.first_name }}
-            </label>
-        </p>
-        <p>
-            <label for="id_last_name" aria-label="Last Name">
-                <i class="fa-solid fa-user"></i> {{ form.last_name }}
-            </label>
-        </p>
-        <button type="submit">Update</button>
-    </form>
+  <form method="POST">
+    {% csrf_token %}
+    <p>
+      <label for="id_people" aria-label="People">
+        <i class="fa-solid fa-people-group"></i> {{ form.people }}
+      </label>
+    </p>
+    <p>
+      <label for="id_date" aria-label="Date">
+        <i class="fa-regular fa-calendar-days"></i> {{ form.date }}
+      </label>
+    </p>
+    <p>
+      <label for="id_time" aria-label="Time">
+        <i class="fa-solid fa-clock"></i> {{ form.time }}
+      </label>
+    </p>
+    <p>
+      <label for="id_first_name" aria-label="First Name">
+        <i class="fa-solid fa-user"></i> {{ form.first_name }}
+      </label>
+    </p>
+    <p>
+      <label for="id_last_name" aria-label="Last Name">
+        <i class="fa-solid fa-user"></i> {{ form.last_name }}
+      </label>
+    </p>
+
+    <button type="submit">Update</button>
+  </form>
 </section>
 
 <section class="images">
-    <div id="croquetas" class="picture"></div>
-    <div id="melon" class="picture"></div>
-    <div id="peppers" class="picture"></div>
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
 </section>
 
 {% endblock %}

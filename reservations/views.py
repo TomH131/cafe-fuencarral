@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationForm, SignupForm
 from .models import Reservation
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+
 
 
 def signup_view(request):
@@ -31,18 +32,18 @@ def login_view(request):
 
 
 def logout_view(request):
-    # Log the user out
     logout(request)
-    
-    return render(request, 'reservations/logout.html')
+    return redirect("home:home")
 
 
+@login_required
 def reservation_view(request):
-    # Handles both new reservations and updates
     if request.method == "POST":
         form = ReservationForm(request.POST)
         if form.is_valid():
-            form.save()
+            reservation = form.save(commit=False)
+            reservation.user = request.user
+            reservation.save()
             return redirect("reservations:details")
     else:
         form = ReservationForm()
@@ -52,21 +53,24 @@ def reservation_view(request):
 
 @login_required
 def modify_view(request):
-    # Try to get the reservation associated with the logged-in user
-    reservation = get_object_or_404(Reservation, user=request.user)
+    try:
+        reservation = Reservation.objects.get(user=request.user)
+    except Reservation.DoesNotExist:
+        return redirect("reservations:reservation")
 
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=reservation)
-        
         if form.is_valid():
             form.save()
-            return redirect('reservations:reservation')
+            return redirect('reservations:details')
     else:
         form = ReservationForm(instance=reservation)
 
     return render(request, 'reservations/modify.html', {'form': form, 'reservation': reservation})
 
 
+
+@login_required
 def cancel_view(request):
     reservation = get_object_or_404(Reservation, user=request.user, status="Active")
 
@@ -77,11 +81,12 @@ def cancel_view(request):
     return render(request, "reservations/cancel.html", {"reservation": reservation})
 
 
+@login_required
 def details_view(request):
-    reservation = Reservation.objects.first()  
-
-    can_modify = reservation.status == "Active"
-    can_cancel = reservation.status == "Active"
+    reservation = Reservation.objects.filter(user=request.user).first()
+    
+    can_modify = reservation.status == "Active" if reservation else False
+    can_cancel = reservation.status == "Active" if reservation else False
 
     return render(request, "reservations/details.html", {
         "reservation": reservation,
@@ -90,7 +95,7 @@ def details_view(request):
     })
 
 
-def update_view(request, code):
+def update_view(request):
     # Confirmation page for updated reservation
     return render(request, "reservations/update.html")
 

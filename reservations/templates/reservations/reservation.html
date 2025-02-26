@@ -1,52 +1,52 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}Reservations{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Reservations{%
+endblock %} {% block content %}
 
 <section class="box">
-    <h2>Reservations</h2>
-    <p>Please make your booking below.</p>
-    <form method="POST">
-        {% csrf_token %}
-        {% if form.errors %}
-        {% for field, errors in form.errors.items %}
-        {% for error in errors %}
-        <p class="error-message">
-            {{ error }} <i class="fa-solid fa-triangle-exclamation"></i>
-        </p>
-        {% endfor %}
-        {% endfor %}
-        {% endif %}
-        <p>
-            <label for="id_people" aria-label="People">
-                <i class="fa-solid fa-people-group"></i>{{ form.people }}
-            </label>
-        </p>
-        <p>
-            <label for="id_date" aria-label="Date">
-                <i class="fa-regular fa-calendar-days"></i>{{ form.date }}
-            </label>
-        </p>
-        <p>
-            <label for="id_time" aria-label="Time">
-                <i class="fa-solid fa-clock"></i>{{ form.time }}
-            </label>
-        </p>
-        <p>Please note if you wish to make a reservation for a group of more than 6 people you will need to contact
-            us direct. Click <a href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact
-            information.</p>
-        <button type="submit">Submit</button>
-    </form>
+  <h2>Reservations</h2>
+  <p>Please make your booking below.</p>
+  <form method="POST">
+    {% csrf_token %} {% if form.errors %}
+    <div class="error-messages">
+      <h3>Please fix the following errors:</h3>
+      <ul>
+        {% for field, errors in form.errors.items %} {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %} {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
 
+    <p>
+      <label for="id_people" aria-label="People">
+        <i class="fa-solid fa-people-group"></i>{{ form.people }}
+      </label>
+    </p>
+    <p>
+      <label for="id_date" aria-label="Date">
+        <i class="fa-regular fa-calendar-days"></i>{{ form.date }}
+      </label>
+    </p>
+    <p>
+      <label for="id_time" aria-label="Time">
+        <i class="fa-solid fa-clock"></i>{{ form.time }}
+      </label>
+    </p>
+
+    <p>
+      <strong>Please note:</strong> If you wish to make a reservation for a
+      group of more than 6 people, you will need to contact us directly. Click
+      <a href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to
+      view our contact information.
+    </p>
+
+    <button type="submit">Submit</button>
+  </form>
 </section>
 
 <section class="images">
-    <div id="croquetas" class="picture"></div>
-    <div id="melon" class="picture"></div>
-    <div id="peppers" class="picture"></div>
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
 </section>
-
 
 {% endblock%}
