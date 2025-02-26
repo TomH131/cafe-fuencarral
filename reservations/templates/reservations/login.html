@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Sign in{% endblock%} 
+{% block content %}
+
+<section class="box">
+  <h2>Sign in</h2>
+  <p>Please log into your account below.</p>
+  <form method="POST">
+    {% csrf_token %}
+        <p>
+        <label for="id_username" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i> {{ form.username }}
+        </label>
+    </p>
+    <p>
+        <label for="id_password" aria-label="Password">
+            <i class="fa-solid fa-key"></i> {{ form.password }}
+        </label>
+    </p>
+    <button type="submit">Sign in</button>
+  </form>
+</section>
+
+<section class="images">
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
+</section>
+
+{% endblock%}

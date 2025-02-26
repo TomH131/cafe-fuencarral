@@ -10,15 +10,7 @@
     <div>
         <h2>Booking confirmed</h2>
         <p>We look forward to seeing you.</p>
-        {% if code %}
-        <p>Here is your reservation code: <strong>{{ code }}</strong></p>
-        <p>This code will be sent to you via email. Please make a note of it as it can be used to modify or
-            cancel your reservation.</p>
-        {% else %}
-        <p>There was an issue generating your reservation code. Please contact us directly. <br>Click <a
-                href="{% url 'contactus:contactus' %}"><strong>here</strong></a> to view our contact information.
-        </p>
-        {% endif %}
+        <p>You will also receive a booking confirmation email shortly.</p>
     </div>
 </section>
 <section class="box">

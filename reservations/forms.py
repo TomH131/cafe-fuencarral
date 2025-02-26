@@ -2,11 +2,12 @@ from django import forms
 from .models import Reservation
 from django.core.exceptions import ValidationError
 from datetime import date, datetime, timedelta
+from django.contrib.auth.models import User, AuthenticationForm
 
 MAX_RESERVATIONS_PER_SLOT = 10
 
 
-class ReservationPart1Form(forms.ModelForm):
+class ReservationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.current_reservation = kwargs.pop('current_reservation', None)
         super().__init__(*args, **kwargs)
@@ -55,35 +56,6 @@ class ReservationPart1Form(forms.ModelForm):
         return cleaned_data
 
 
-class ReservationPart2Form(forms.ModelForm):
-    class Meta:
-        model = Reservation
-        fields = ['first_name', 'last_name', 'email']
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
-        }
-
-    def clean_first_name(self):
-        first_name = self.cleaned_data.get('first_name')
-        if first_name:
-            first_name = first_name.title()
-        return first_name
-
-    def clean_last_name(self):
-        last_name = self.cleaned_data.get('last_name')
-        if last_name:
-            last_name = last_name.title()
-        return last_name
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if email:
-            email = email.lower()
-        return email
-
-
 class SearchForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Input your code'
@@ -92,3 +64,32 @@ class SearchForm(forms.Form):
     def clean_code(self):
         code = self.cleaned_data['code']
         return code.upper()
+
+
+class SignupForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Email is already in use.")
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.username = self.cleaned_data['email']
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+    
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': True}), label="Email")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
+
+    def clean_username(self):
+        return self.cleaned_data.get("username").lower()

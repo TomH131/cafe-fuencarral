@@ -1,0 +1,47 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Signup{% endblock%} 
+{% block content %}
+
+<section class="box">
+  <h2>Create an account</h2>
+  <p>Please provide your details below to create an account</p>
+  <form method="POST">
+    {% csrf_token %}
+    <p>
+        <label for="id_first_name" aria-label="First Name">
+            <i class="fa-solid fa-user"></i> {{ form.first_name }}
+        </label>
+    </p>
+    <p>
+        <label for="id_last_name" aria-label="Last Name">
+            <i class="fa-solid fa-user"></i> {{ form.last_name }}
+        </label>
+    </p>
+    <p>
+        <label for="id_email" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i> {{ form.email }}
+        </label>
+    </p>
+    <p>
+        <label for="id_password" aria-label="Password">
+            <i class="fa-solid fa-key"></i> {{ form.password }}
+        </label>
+    </p>
+    <p>
+      If you already have an account created please click
+      <a href="{% url 'login:login' %}"><strong>here</strong></a> to
+      sign in.
+    </p>
+    <button type="submit">Next</button>
+  </form>
+</section>
+
+<section class="images">
+  <div id="croquetas" class="picture"></div>
+  <div id="melon" class="picture"></div>
+  <div id="peppers" class="picture"></div>
+</section>
+
+{% endblock%}

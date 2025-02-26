@@ -1,10 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReservationPart1Form, ReservationPart2Form, SearchForm
+from .forms import ReservationForm, SearchForm, SignupForm
 from .models import Reservation
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 
 
-def reservation_step1_view(request):
-    # This is the first part of the reservation submission
+def signup_view(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("reservation")
+    else:
+        form = SignupForm()
+
+    return render(request, "signup.html", {"form": form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("reservation")
+    else:
+        form = AuthenticationForm()
+
+    return render(request, "login.html", {"form": form})
+
+
+def reservation_view(request):
+    # This is the reservation submission
     if request.method == 'POST':
         form = ReservationPart1Form(request.POST)
         if form.is_valid():
@@ -25,36 +53,7 @@ def reservation_step1_view(request):
     else:
         form = ReservationPart1Form()
 
-    return render(request, 'reservations/reservation_step1.html', {
-        'form': form})
-
-
-def reservation_step2_view(request):
-    # This is the second part of the reservation submission
-    reservation_data = request.session.get('reservation_data', {})
-
-    if request.method == 'POST':
-        form = ReservationPart2Form(request.POST)
-        if form.is_valid():
-            reservation_data.update(form.cleaned_data)
-            reservation = Reservation.objects.create(
-                people=reservation_data['people'],
-                date=reservation_data['date'],
-                time=reservation_data['time'],
-                first_name=reservation_data['first_name'],
-                last_name=reservation_data['last_name'],
-                email=reservation_data['email']
-            )
-
-            del request.session['reservation_data']
-
-            request.session['reservation_code'] = reservation.code
-
-            return redirect('reservations:submission')
-    else:
-        form = ReservationPart2Form()
-
-    return render(request, 'reservations/reservation_step2.html', {
+    return render(request, 'reservations/submission.html', {
         'form': form})
 
 
