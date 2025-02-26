@@ -4,7 +4,7 @@ from .models import Reservation
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 
 def signup_view(request):
@@ -21,13 +21,16 @@ def signup_view(request):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
+            user = form.user_cache  # User is authenticated here
             login(request, user)
-            return redirect("home:home")
+            return redirect("home:home")  # Adjust the redirect as per your needs
+        else:
+            messages.error(request, "Invalid email or password.")
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
+
     return render(request, 'reservations/login.html', {'form': form})
 
 
@@ -53,21 +56,12 @@ def reservation_view(request):
 
 @login_required
 def modify_view(request):
-    try:
-        reservation = Reservation.objects.get(user=request.user)
-    except Reservation.DoesNotExist:
-        return redirect("reservations:reservation")
+    reservations = Reservation.objects.filter(status='Active')
 
-    if request.method == 'POST':
-        form = ReservationForm(request.POST, instance=reservation)
-        if form.is_valid():
-            form.save()
-            return redirect('reservations:details')
-    else:
-        form = ReservationForm(instance=reservation)
+    if not reservations:
+        return render(request, 'reservations/modify.html', {'message': 'No active reservations found.'})
 
-    return render(request, 'reservations/modify.html', {'form': form, 'reservation': reservation})
-
+    return render(request, 'reservations/modify.html', {'reservations': reservations})
 
 
 @login_required
@@ -83,16 +77,32 @@ def cancel_view(request):
 
 @login_required
 def details_view(request):
-    reservation = Reservation.objects.get(user=request.user)
-    
-    can_modify = reservation.status == "Active" if reservation else False
-    can_cancel = reservation.status == "Active" if reservation else False
+    # Filter reservations to get active ones
+    reservations = Reservation.objects.filter(status='Active')
 
-    return render(request, "reservations/details.html", {
-        "reservation": reservation,
-        "can_modify": can_modify,
-        "can_cancel": can_cancel
-    })
+    # If no active reservations are found, set reservation to None
+    if not reservations:
+        reservation = None
+    elif reservations.count() == 1:
+        # If there's exactly one active reservation, use it
+        reservation = reservations.first()
+    else:
+        # If there are multiple active reservations, handle as needed
+        reservation = None  # Or handle this case as needed
+
+    # Example logic to determine whether the reservation can be modified or canceled
+    can_modify = True  # Your logic here
+    can_cancel = True  # Your logic here
+
+    return render(
+        request,
+        'reservations/details.html',
+        {
+            'reservation': reservation,
+            'can_modify': can_modify,
+            'can_cancel': can_cancel,
+        }
+    )
 
 
 def update_view(request):
@@ -108,3 +118,10 @@ def submission_view(request):
     reservation = Reservation.objects.filter(code=code).first() if code else None
 
     return render(request, 'reservations/submission.html', {'reservation': reservation})
+
+
+def bookings_view(request):
+    # Filter reservations to show only active ones for the current user
+    reservations = Reservation.objects.filter(status='Active')  # Modify this query if needed (e.g., based on user or other filters)
+    
+    return render(request, 'reservations/bookings.html', {'reservations': reservations})

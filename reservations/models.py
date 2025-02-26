@@ -1,8 +1,10 @@
 from django.db import models
 from datetime import time
 from django.utils import timezone
-from django.contrib.auth.models import User  # Import the User model
+from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+import random
+import string
 
 class Reservation(models.Model):
     NUMBER_OF_PEOPLE_CHOICES = [
@@ -38,6 +40,7 @@ class Reservation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
+    code = models.CharField(max_length=15, blank=True, null=True)
     password = models.CharField(max_length=25)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
@@ -56,6 +59,8 @@ class Reservation(models.Model):
         return f"Reservation for {self.first_name} {self.last_name}"
 
     def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = generate_code()
         if not self.timestamp:
             self.timestamp = timezone.now()
 
@@ -66,3 +71,10 @@ class Reservation(models.Model):
             self.password = make_password(self.password)  # Hash the password
         
         super().save(*args, **kwargs)  # Call the parent class's save method once
+
+def generate_code(length=8, prefix="FUE-"):
+    # This assigns a randomly generated code to each reservation
+    characters = string.ascii_uppercase + string.digits
+    random_code = ''.join(random.choice(characters) for _ in range(length))
+    return prefix + random_code
+    

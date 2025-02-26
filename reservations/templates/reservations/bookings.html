@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Reservations list{% endblock %}
+
+{% block content %}
+  <section class="box">
+    <h2>Your Active Reservations</h2>
+
+    {% if reservations %}
+      <ul>
+        {% for reservation in reservations %}
+          <li>
+            <strong>Reservation for {{ reservation.first_name }} {{ reservation.last_name }}</strong>
+            <p>Date: {{ reservation.date }} at {{ reservation.time }}</p>
+            <p>People: {{ reservation.people }}</p>
+            
+            <form action="{% url 'reservations:modify' %}" method="get">
+              <button type="submit">Modify</button>
+            </form>
+
+            <form action="{% url 'reservations:cancel' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Cancel</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You have no active reservations.</p>
+    {% endif %}
+  </section>
+{% endblock %}

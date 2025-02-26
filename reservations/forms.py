@@ -59,8 +59,6 @@ class ReservationForm(forms.ModelForm):
         return cleaned_data
 
 
-
-
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -81,7 +79,7 @@ class SignupForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'autofocus': True}),
@@ -94,10 +92,17 @@ class LoginForm(AuthenticationForm):
         password = self.cleaned_data.get("password")
 
         if email and password:
-            self.user_cache = authenticate(username=email, password=password)
-            if self.user_cache is None:
+            # Attempt to get the user by email (not username)
+            try:
+                user = authenticate(request=self.request, username=email, password=password)
+            except Exception:
+                user = None
+
+            if user is None:
                 raise forms.ValidationError("Invalid email or password.")
-            elif not self.user_cache.is_active:
+            elif not user.is_active:
                 raise forms.ValidationError("This account is inactive.")
+            
+            self.user_cache = user
 
         return self.cleaned_data
