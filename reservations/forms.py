@@ -2,6 +2,7 @@ from django import forms
 from .models import Reservation
 from django.core.exceptions import ValidationError
 from datetime import date, datetime, timedelta
+from django.contrib.auth.hashers import make_password
 
 MAX_RESERVATIONS_PER_SLOT = 10
 
@@ -56,13 +57,21 @@ class ReservationPart1Form(forms.ModelForm):
 
 
 class ReservationPart2Form(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.is_modifying = kwargs.pop('is_modifying', False)
+        super().__init__(*args, **kwargs)
+
+        if self.is_modifying:
+            self.fields['password'].required = False  # Make password optional when modifying
+
     class Meta:
         model = Reservation
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'password']
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Password'}),
         }
 
     def clean_first_name(self):
@@ -83,12 +92,26 @@ class ReservationPart2Form(forms.ModelForm):
             email = email.lower()
         return email
 
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not self.is_modifying and not password:
+            raise ValidationError("Password is required when making a reservation.")
+        return password
+
 
 class SearchForm(forms.Form):
-    code = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Input your code'
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'placeholder': 'Enter your email'
     }))
     
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'placeholder': 'Enter your password'
+    }))
+    
+    code = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Enter your reservation code'
+    }))
+
     def clean_code(self):
         code = self.cleaned_data['code']
         return code.upper()

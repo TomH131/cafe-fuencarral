@@ -109,40 +109,27 @@ def modify_view(request, code):
         return redirect('reservations:cancel', code=code)
 
     if request.method == 'POST':
-        form_part1 = ReservationPart1Form(request.POST, initial={
-            'people': reservation.people,
-            'date': reservation.date,
-            'time': reservation.time
-        }, current_reservation=reservation)
-        form_part2 = ReservationPart2Form(request.POST, initial={
-            'first_name': reservation.first_name,
-            'last_name': reservation.last_name,
-            'email': reservation.email
-        })
+        form_part1 = ReservationPart1Form(request.POST, instance=reservation, current_reservation=reservation)
+        form_part2 = ReservationPart2Form(request.POST, instance=reservation, is_modifying=True)
 
         if form_part1.is_valid() and form_part2.is_valid():
-            reservation.people = form_part1.cleaned_data['people']
-            reservation.date = form_part1.cleaned_data['date']
-            reservation.time = form_part1.cleaned_data['time']
-            reservation.first_name = form_part2.cleaned_data['first_name']
-            reservation.last_name = form_part2.cleaned_data['last_name']
-            reservation.email = form_part2.cleaned_data['email']
+            reservation = form_part1.save(commit=False)
+            form_part2_data = form_part2.cleaned_data
+
+            # Only update the password if the user provides a new one
+            if form_part2_data['password']:
+                reservation.password = form_part2_data['password']
+
+            reservation.first_name = form_part2_data['first_name']
+            reservation.last_name = form_part2_data['last_name']
+            reservation.email = form_part2_data['email']
             reservation.save()
 
             return redirect('reservations:update', code=reservation.code)
 
     else:
-        form_part1 = ReservationPart1Form(initial={
-            'people': reservation.people,
-            'date': reservation.date,
-            'time': reservation.time
-        }, current_reservation=reservation)
-
-        form_part2 = ReservationPart2Form(initial={
-            'first_name': reservation.first_name,
-            'last_name': reservation.last_name,
-            'email': reservation.email
-        })
+        form_part1 = ReservationPart1Form(instance=reservation, current_reservation=reservation)
+        form_part2 = ReservationPart2Form(instance=reservation, is_modifying=True)
 
     return render(request, 'reservations/modify.html', {
         'form_part1': form_part1,

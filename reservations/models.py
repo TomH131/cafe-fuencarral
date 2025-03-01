@@ -3,6 +3,7 @@ from datetime import time
 from django.utils import timezone
 import random
 import string
+from django.contrib.auth.hashers import make_password
 
 
 class Reservation(models.Model):
@@ -38,6 +39,7 @@ class Reservation(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
+    password = models.CharField(max_length=128)
     code = models.CharField(max_length=15, blank=True, null=True)
     timestamp = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
@@ -60,9 +62,12 @@ class Reservation(models.Model):
             self.code = generate_code()
         if not self.timestamp:
             self.timestamp = timezone.now()
-
         if not self.status:
             self.status = "Active"
+
+        if self.password and not self.password.startswith('pbkdf2_sha256$'):
+            self.password = make_password(self.password)
+
         super(Reservation, self).save(*args, **kwargs)
 
 

@@ -7,23 +7,38 @@
 
 <section class="box">
     <h2>Find your reservation</h2>
+    
     {% if error_message %}
     <p class="error-message">
         {{ error_message }} <i class="fa-solid fa-triangle-exclamation"></i>
     </p>
     {% endif %}
+    
     <form method="post">
         {% csrf_token %}
+        
+        <p>
+            <label for="id_email" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i> {{ form.email }}
+            </label>
+        </p>
+
+        <p>
+            <label for="id_password" aria-label="Password">
+                <i class="fa-solid fa-lock"></i> {{ form.password }}
+            </label>
+        </p>
+
         <p>
             <label for="id_code" aria-label="Code">
                 <i class="fa-solid fa-key"></i> {{ form.code }}
             </label>
         </p>
+        
         <button type="submit"><strong>Search</strong></button>
     </form>
-
-
 </section>
+
 
 <section class="images">
     <div id="croquetas" class="picture"></div>
