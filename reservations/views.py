@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationPart1Form, ReservationPart2Form, SearchForm
 from .models import Reservation
+from django.contrib.auth.hashers import check_password, make_password
 
 
 def reservation_step1_view(request):
@@ -37,17 +38,23 @@ def reservation_step2_view(request):
         form = ReservationPart2Form(request.POST)
         if form.is_valid():
             reservation_data.update(form.cleaned_data)
+
+            # Hash the password before saving
+            password = form.cleaned_data.get('password')
+            if password:
+                reservation_data['password'] = make_password(password)
+
             reservation = Reservation.objects.create(
                 people=reservation_data['people'],
                 date=reservation_data['date'],
                 time=reservation_data['time'],
                 first_name=reservation_data['first_name'],
                 last_name=reservation_data['last_name'],
-                email=reservation_data['email']
+                email=reservation_data['email'],
+                password=reservation_data['password'],  # Use hashed password
             )
 
             del request.session['reservation_data']
-
             request.session['reservation_code'] = reservation.code
 
             return redirect('reservations:submission')
@@ -55,7 +62,8 @@ def reservation_step2_view(request):
         form = ReservationPart2Form()
 
     return render(request, 'reservations/reservation_step2.html', {
-        'form': form})
+        'form': form
+    })
 
 
 def submission_view(request):
@@ -75,29 +83,42 @@ def submission_view(request):
 
 def search_view(request):
     # This is to search for an existing reservation using the code given
-    reservations = []
     error_message = None
 
     if request.method == "POST":
         form = SearchForm(request.POST)
-        if form.is_valid():
+        
+        if form.is_valid():  # Check if form is valid
             code = form.cleaned_data.get('code')
-            reservations = Reservation.objects.filter(code=code)
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
 
-            if not reservations.exists():
+            # Check if the reservation code exists in the database
+            reservation = Reservation.objects.filter(code=code).first()
+
+            if not reservation:
+                # No reservation with this code
                 error_message = "This code does not exist. Please try again."
+            else:
+                # Check if the email matches the reservation's email
+                if reservation.email != email:
+                    error_message = "This email does not match the reservation code. Please try again."
+                elif not check_password(password, reservation.password):
+                    # Check if the entered password matches the reservation's password (hashed)
+                    error_message = "Incorrect password. Please try again."
+                else:
+                    # All validation passed, proceed to the details view
+                    return redirect('reservations:details', code=reservation.code)
 
-            else: 
-                reservation = reservations.first()
-                return redirect('reservations:details', code=reservation.code)
+        else:
+            error_message = "Please correct the errors in the form."
 
     else:
         form = SearchForm()
 
     return render(request, 'reservations/search.html', {
         'form': form,
-        'reservations': reservations,
-        'error_message': error_message
+        'error_message': error_message  # Display error message if validation failed
     })
 
 
@@ -118,7 +139,7 @@ def modify_view(request, code):
 
             # Only update the password if the user provides a new one
             if form_part2_data['password']:
-                reservation.password = form_part2_data['password']
+                reservation.password = make_password(form_part2_data['password'])
 
             reservation.first_name = form_part2_data['first_name']
             reservation.last_name = form_part2_data['last_name']

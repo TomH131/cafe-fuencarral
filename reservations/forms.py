@@ -58,6 +58,7 @@ class ReservationPart1Form(forms.ModelForm):
 
 class ReservationPart2Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        # Use the is_modifying flag to control if password is optional
         self.is_modifying = kwargs.pop('is_modifying', False)
         super().__init__(*args, **kwargs)
 
@@ -89,29 +90,34 @@ class ReservationPart2Form(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email:
-            email = email.lower()
+            email = email.lower()  # Always store email in lowercase for consistency
         return email
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
-        if not self.is_modifying and not password:
-            raise ValidationError("Password is required when making a reservation.")
-        return password
+        if password:
+            # Hash the password before saving, only if it is not empty
+            return make_password(password)
+        return None  # Return None if password is not set or empty
 
 
 class SearchForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={
-        'placeholder': 'Enter your email'
-    }))
-    
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Enter your password'
-    }))
-    
-    code = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Enter your reservation code'
-    }))
+    email = forms.EmailField(required=True, label='Email')
+    password = forms.CharField(widget=forms.PasswordInput, required=True, label='Password')
+    code = forms.CharField(max_length=64, required=True, label='Reservation Code')
 
     def clean_code(self):
         code = self.cleaned_data['code']
-        return code.upper()
+        # Check if the code exists in the database
+        if not Reservation.objects.filter(code=code).exists():
+            raise forms.ValidationError("This code does not exist.")
+        return code
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        # Normalize the email to lowercase
+        return email.lower()
+
+    def clean_password(self):
+        # No changes needed for the password, return it as-is
+        return self.cleaned_data['password']
