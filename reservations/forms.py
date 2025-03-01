@@ -96,9 +96,9 @@ class ReservationPart2Form(forms.ModelForm):
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if password:
-            # Hash the password before saving, only if it is not empty
+            print(f"Received password: {password}")
             return make_password(password)
-        return None  # Return None if password is not set or empty
+        return None
 
 
 class SearchForm(forms.Form):

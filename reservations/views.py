@@ -82,7 +82,6 @@ def submission_view(request):
 
 
 def search_view(request):
-    # This is to search for an existing reservation using the code given
     error_message = None
 
     if request.method == "POST":
@@ -103,12 +102,13 @@ def search_view(request):
                 # Check if the email matches the reservation's email
                 if reservation.email != email:
                     error_message = "This email does not match the reservation code. Please try again."
-                elif not check_password(password, reservation.password):
-                    # Check if the entered password matches the reservation's password (hashed)
-                    error_message = "Incorrect password. Please try again."
                 else:
-                    # All validation passed, proceed to the details view
-                    return redirect('reservations:details', code=reservation.code)
+                    # Directly compare the entered password with the stored hashed password
+                    if not check_password(password, reservation.password):
+                        error_message = "Incorrect password. Please try again."
+                    else:
+                        # All validation passed, proceed to the details view
+                        return redirect('reservations:details', code=reservation.code)
 
         else:
             error_message = "Please correct the errors in the form."
