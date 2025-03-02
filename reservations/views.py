@@ -39,11 +39,6 @@ def reservation_step2_view(request):
         if form.is_valid():
             reservation_data.update(form.cleaned_data)
 
-            # Hash the password before saving
-            password = form.cleaned_data.get('password')
-            if password:
-                reservation_data['password'] = make_password(password)
-
             reservation = Reservation.objects.create(
                 people=reservation_data['people'],
                 date=reservation_data['date'],
@@ -51,7 +46,7 @@ def reservation_step2_view(request):
                 first_name=reservation_data['first_name'],
                 last_name=reservation_data['last_name'],
                 email=reservation_data['email'],
-                password=reservation_data['password'],  # Use hashed password
+                password=reservation_data['password'],
             )
 
             del request.session['reservation_data']
@@ -87,27 +82,22 @@ def search_view(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
         
-        if form.is_valid():  # Check if form is valid
+        if form.is_valid():
             code = form.cleaned_data.get('code')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
 
-            # Check if the reservation code exists in the database
             reservation = Reservation.objects.filter(code=code).first()
 
             if not reservation:
-                # No reservation with this code
                 error_message = "This code does not exist. Please try again."
             else:
-                # Check if the email matches the reservation's email
                 if reservation.email != email:
                     error_message = "This email does not match the reservation code. Please try again."
                 else:
-                    # Directly compare the entered password with the stored hashed password
                     if not check_password(password, reservation.password):
                         error_message = "Incorrect password. Please try again."
                     else:
-                        # All validation passed, proceed to the details view
                         return redirect('reservations:details', code=reservation.code)
 
         else:
@@ -118,7 +108,7 @@ def search_view(request):
 
     return render(request, 'reservations/search.html', {
         'form': form,
-        'error_message': error_message  # Display error message if validation failed
+        'error_message': error_message
     })
 
 
@@ -136,10 +126,6 @@ def modify_view(request, code):
         if form_part1.is_valid() and form_part2.is_valid():
             reservation = form_part1.save(commit=False)
             form_part2_data = form_part2.cleaned_data
-
-            # Only update the password if the user provides a new one
-            if form_part2_data['password']:
-                reservation.password = make_password(form_part2_data['password'])
 
             reservation.first_name = form_part2_data['first_name']
             reservation.last_name = form_part2_data['last_name']

@@ -58,12 +58,11 @@ class ReservationPart1Form(forms.ModelForm):
 
 class ReservationPart2Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        # Use the is_modifying flag to control if password is optional
         self.is_modifying = kwargs.pop('is_modifying', False)
         super().__init__(*args, **kwargs)
 
         if self.is_modifying:
-            self.fields['password'].required = False  # Make password optional when modifying
+            self.fields['password'].required = False
 
     class Meta:
         model = Reservation
@@ -90,15 +89,15 @@ class ReservationPart2Form(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email:
-            email = email.lower()  # Always store email in lowercase for consistency
+            email = email.lower()
         return email
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if password:
-            print(f"Received password: {password}")
             return make_password(password)
-        return None
+        return self.instance.password
+
 
 
 class SearchForm(forms.Form):
@@ -108,16 +107,13 @@ class SearchForm(forms.Form):
 
     def clean_code(self):
         code = self.cleaned_data['code']
-        # Check if the code exists in the database
         if not Reservation.objects.filter(code=code).exists():
             raise forms.ValidationError("This code does not exist.")
         return code
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        # Normalize the email to lowercase
         return email.lower()
 
     def clean_password(self):
-        # No changes needed for the password, return it as-is
         return self.cleaned_data['password']
