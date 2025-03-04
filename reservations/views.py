@@ -206,5 +206,4 @@ def logout_view(request):
     # Logs out the user by clearing the authenticated session.
     if 'authenticated_reservation' in request.session:
         del request.session['authenticated_reservation']
-        messages.success(request, "You have been logged out successfully.")
     return redirect('home:home')
