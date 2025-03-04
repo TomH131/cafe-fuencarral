@@ -12,4 +12,5 @@ urlpatterns = [
     path('update/<str:code>/', views.update_view, name='update'),
     path('', views.reservation_step1_view, name='reservations'),
     path('step-two/', views.reservation_step2_view, name='step-two'),
+    path('logout/', views.logout_view, name='logout'),
 ]

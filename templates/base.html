@@ -39,6 +39,11 @@
                 </ul>
             </nav>
         </section>
+        <section>
+            {% if request.session.authenticated_reservation %}
+                <p id="login">You are logged in. Click <a href="{% url 'reservations:logout' %}"><strong>here</strong></a> to logout.</p>
+            {% endif %}
+        </section>
     </header>
     <main>
         {% block content %}

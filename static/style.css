@@ -37,6 +37,20 @@ h1 {
     background-color: darkred;
 }
 
+#login {
+    background-color: rgb(139, 0, 0, 0.2);
+    font-size: 85%;
+    color: black;
+    margin-top: 1px;
+    text-align: right;
+}
+
+#login a {
+    color: black;
+    background-color: rgb(232, 204, 204);
+    text-decoration: underline;
+}
+
 header a {
     text-decoration: none;
     color: gold;
@@ -214,6 +228,10 @@ footer a {
 
     header a {
         font-size: 140%;
+    }
+
+    #login a {
+        font-size: 13.6px;
     }
 
     .box {
