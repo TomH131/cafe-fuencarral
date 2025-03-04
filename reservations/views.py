@@ -32,8 +32,11 @@ def reservation_step1_view(request):
 
 
 def reservation_step2_view(request):
-    # This is the second part of the reservation submission
-    reservation_data = request.session.get('reservation_data', {})
+    # This is the second part of the reservation form
+    reservation_data = request.session.get('reservation_data')
+
+    if not reservation_data:
+        return redirect('reservations:reservations')
 
     if request.method == 'POST':
         form = ReservationPart2Form(request.POST)
@@ -79,6 +82,10 @@ def submission_view(request):
 
 def search_view(request):
     error_message = None
+
+    # Check if the user is already authenticated for a reservation
+    if 'authenticated_reservation' in request.session:
+        return redirect('reservations:details', code=request.session['authenticated_reservation'])
 
     if request.method == "POST":
         form = SearchForm(request.POST)

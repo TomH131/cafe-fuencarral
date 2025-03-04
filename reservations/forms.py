@@ -99,11 +99,23 @@ class ReservationPart2Form(forms.ModelForm):
         return self.instance.password
 
 
-
 class SearchForm(forms.Form):
-    email = forms.EmailField(required=True, label='Email')
-    password = forms.CharField(widget=forms.PasswordInput, required=True, label='Password')
-    code = forms.CharField(max_length=64, required=True, label='Reservation Code')
+    email = forms.EmailField(
+        required=True, 
+        label='Email',
+        widget=forms.EmailInput(attrs={'placeholder': 'Email'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), 
+        required=True, 
+        label='Password'
+    )
+    code = forms.CharField(
+        max_length=64, 
+        required=True, 
+        label='Reservation Code',
+        widget=forms.TextInput(attrs={'placeholder': 'Reservation code'})
+    )
 
     def clean_code(self):
         code = self.cleaned_data['code']
