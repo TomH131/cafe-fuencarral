@@ -61,7 +61,7 @@ header a {
 
 /* Main content */
 .box {
-    background-color: gold;
+    background-color: rgb(255, 215, 0, 0.9);
     padding: 10px;
     border-radius: 5%;
     text-align: center;
@@ -75,7 +75,7 @@ p {
 }
 
 .images {
-    background-color: gold;
+    background-color: rgb(255, 215, 0, 0.9);
     padding: 10px;
 }
 
