@@ -94,9 +94,14 @@ class ReservationPart2Form(forms.ModelForm):
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
-        if password:
-            return make_password(password)
-        return self.instance.password
+
+        if self.is_modifying and not password:
+            return self.instance.password
+
+        if len(password) < 6:
+            raise ValidationError("Password must be at least 6 characters long.")
+
+        return make_password(password)
 
 
 class SearchForm(forms.Form):

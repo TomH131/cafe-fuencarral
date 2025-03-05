@@ -26,19 +26,19 @@ I designed wireframes for both mobile and desktop using balsamiq in order to fol
 
 ### Mobile
 
-![Home - Mobile](static/images/home-mobile.png)
+![Home-Mobile](static/images/home-mobile.png)
 
-![Menu - Mobile](static/images/menu-mobile.png)
+![Menu-Mobile](static/images/menu-mobile.png)
 
-![Reservation - Mobile](static/images/reservation-mobile.png)
+![Reservation-Mobile](static/images/reservation-mobile.png)
 
 ### Desktop
 
-![Home - Desktop](static/images/home-desktop.png)
+![Home-Desktop](static/images/home-desktop.png)
 
-![Menu - Desktop](static/images/menu-desktop.png)
+![Menu-Desktop](static/images/menu-desktop.png)
 
-![Reservation - Desktop](static/images/reservation-desktop.png)
+![Reservation-Desktop](static/images/reservation-desktop.png)
 
 ## Features
 
@@ -141,6 +141,10 @@ There are only **10 tables** in the cafe, so if all tables are already booked at
 ![Reservation-error-message](static\images\reservation-error-message.png)
 
 In Part 2 of the form, names and email addresses can still be submitted even if spaces are added at the front or end of entries. Submitting names or email addresses in all lowercase or all uppercase will convert them to the proper format. If an email is submitted in an incorrect format, an error message will prompt the correct format.
+
+If the user inputs a password that is less than 6 characters long they are met with an error message informing them of the minimum requirment.
+
+![Password-length](staticfiles\images\password-length.png)
 
 If the user searches with an incorrect code, they will receive an error message letting them know that the code does not exist. As above, codes submitted with spaces on either side are still accepted. Similarly, codes entered in lowercase are converted to uppercase.
 
