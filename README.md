@@ -22,7 +22,7 @@ This website is designed for people in Bristol, whether residents or visitors, w
 
 ## Wireframes
 
-I designed wireframes for both mobile and desktop using balsamiq in order to follow best practice. We worked on mobile layout primarily as it is more likely that customers will view our reservation using their mobile device.
+I designed wireframes for both mobile and desktop using balsamiq in order to follow best practice. We worked on the mobile layout primarily as it is more likely that customers will view our reservation using their mobile device.
 
 ### Mobile
 
@@ -44,7 +44,7 @@ I designed wireframes for both mobile and desktop using balsamiq in order to fol
 
 ### Hero image and navbar
 
-At the top of every page is the name of the cafe over a background image of some tapas. Directly below the image is the navbar, allowing for easy navigation around the entire website. Then there is some text asking the customer whether they would like to login to view their reservation.
+At the top of every page is the name of the cafe over a background image of some tapas. Directly below the image is the navbar, allowing for easy navigation around the entire website. Then there is some text asking the customer whether they would like to login to view their reservation which changes once they are logged in.
 
 ![Header](static/images/hero-image-navbar.png)
 
@@ -164,6 +164,7 @@ When searching for a reservation that has already been cancelled, a message will
 
 Users are logged out automatically if they close their browser window while logged in. 
 
+If the user trys to access step two of the reservation form without completing step one via the URL they will be  redirected to step one. Similarly if they try to acess the modify, details, cancel or update page without first entering the correct details in the search page via the URL they will be redirected to the search screen. Once the user is logged in if they click on the button to logout they will be redirected to the home page.
 
 ## Deployment
 
