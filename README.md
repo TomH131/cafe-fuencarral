@@ -162,6 +162,8 @@ When searching for a reservation that has already been cancelled, a message will
 
 ![Details-cancellation](static/images/details-cancellation.png)
 
+Users are logged out automatically if they close their browser window while logged in. 
+
 
 ## Deployment
 
