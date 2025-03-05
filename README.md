@@ -20,6 +20,26 @@ This website is designed for people in Bristol, whether residents or visitors, w
  - As a restaurant manager I want to be the only one able to view all reservations so that customer details remain protected and other reservations stay confidential.
 
 
+## Wireframes
+
+I designed wireframes for both mobile and desktop using balsamiq in order to follow best practice. We worked on mobile layout primarily as it is more likely that customers will view our reservation using their mobile device.
+
+### Mobile
+
+![Home - Mobile](static/images/home-mobile.png)
+
+![Menu - Mobile](static/images/menu-mobile.png)
+
+![Reservation - Mobile](static/images/reservation-mobile.png)
+
+### Desktop
+
+![Home - Desktop](static/images/home-desktop.png)
+
+![Menu - Desktop](static/images/menu-desktop.png)
+
+![Reservation - Desktop](static/images/reservation-desktop.png)
+
 ## Features
 
 ### Hero image and navbar
