@@ -101,18 +101,18 @@ class ReservationPart2Form(forms.ModelForm):
 
 class SearchForm(forms.Form):
     email = forms.EmailField(
-        required=True, 
+        required=True,
         label='Email',
         widget=forms.EmailInput(attrs={'placeholder': 'Email'})
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), 
-        required=True, 
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}),
+        required=True,
         label='Password'
     )
     code = forms.CharField(
-        max_length=64, 
-        required=True, 
+        max_length=64,
+        required=True,
         label='Reservation Code',
         widget=forms.TextInput(attrs={'placeholder': 'Reservation code'})
     )

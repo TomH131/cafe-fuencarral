@@ -44,7 +44,7 @@ I designed wireframes for both mobile and desktop using balsamiq in order to fol
 
 ### Hero image and navbar
 
-At the top of every page is the name of the cafe over a background image of some tapas. Directly below the image is the navbar, allowing for easy navigation around the entire website.
+At the top of every page is the name of the cafe over a background image of some tapas. Directly below the image is the navbar, allowing for easy navigation around the entire website. Then there is some text asking the customer whether they would like to login to view their reservation.
 
 ![Header](static/images/hero-image-navbar.png)
 
@@ -62,7 +62,7 @@ The reservation form is split into two parts, so the customer can know for certa
 
 ### Reservation part 2
 
-Once the user selects an available time and clicks 'Next', they are taken to Part 2, where they are asked to enter their first and last name and email address. There is then a 'Submit' button to complete the reservation form.
+Once the user selects an available time and clicks 'Next', they are taken to Part 2, where they are asked to enter their first and last name, email address and a password for their login. There is then a 'Submit' button to complete the reservation form.
 
 ![Reservation-part2](static/images/reservation-part2.png)
 
@@ -74,13 +74,13 @@ After clicking 'Submit,' the user is taken to the submission confirmation screen
 
 ### Reservation search
 
-If the user wishes to make changes to their reservation, they will first be taken to this screen, where they will need to search for their reservation using the randomly generated code they were given.
+If the user wishes to make changes to their reservation, they will first be taken to this screen, where they will need to login using the email address and password they provided as well as the randomly generated code they were given.
 
-![Reservation-search](static/images/reservation-search.png)
+![Reservation-search](static\images\reservation-search.png)
 
 ### Reservation details
 
-After the user enters their code and clicks 'Search', they will go to the details screen. Here, they will see details of their reservation along with two buttons: 'Modify' and 'Cancel.' 'Modify' will take them to another screen, while 'Cancel' will cancel the reservation.
+After the user enters their code and login details and clicks 'Search', they will go to the details screen. Here, they will see details of their reservation along with two buttons: 'Modify' and 'Cancel.' 'Modify' will take them to another screen, while 'Cancel' will cancel the reservation.
 
 ![Reservation-details](static/images/reservation-details.png)
 
@@ -104,7 +104,7 @@ On the modify screen, if the user clicks the 'Cancel' button, they will go to th
 
 ### Colour scheme
 
-The two colours chosen for this website are dark red and gold, which nicely reflect the colours of the Spanish flag. A background image in the main section of every page also gives the website a more Spanish feel. 
+The two colours chosen for this website are dark red and gold, which nicely reflect the colours of the Spanish flag. A background image in the main section of every page also gives the website a more Spanish feel. The gold colour has been made slightly opaque so it is less intense and that way the Spanish themed background image comes through. 
 
 ### Navigation
 

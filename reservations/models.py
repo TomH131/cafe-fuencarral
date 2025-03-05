@@ -76,4 +76,3 @@ def generate_code(length=8, prefix="FUE-"):
     characters = string.ascii_uppercase + string.digits
     random_code = ''.join(random.choice(characters) for _ in range(length))
     return prefix + random_code
-    

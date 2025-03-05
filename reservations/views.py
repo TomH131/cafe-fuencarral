@@ -83,9 +83,10 @@ def submission_view(request):
 def search_view(request):
     error_message = None
 
-    # Check if the user is already authenticated for a reservation
     if 'authenticated_reservation' in request.session:
-        return redirect('reservations:details', code=request.session['authenticated_reservation'])
+        return redirect(
+            'reservations:details', code=request.session[
+                'authenticated_reservation'])
 
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -101,14 +102,16 @@ def search_view(request):
                 error_message = "This code does not exist. Please try again."
             else:
                 if reservation.email != email:
-                    error_message = "This email does not match the reservation code. Please try again."
+                    error_message = "This email does not match the "
+                    "reservation code. Please try again."
                 else:
                     if not check_password(password, reservation.password):
                         error_message = "Incorrect password. Please try again."
                     else:
-                        # Save authentication in session
-                        request.session['authenticated_reservation'] = reservation.code
-                        return redirect('reservations:details', code=reservation.code)
+                        request.session[
+                            'authenticated_reservation'] = reservation.code
+                        return redirect(
+                            'reservations:details', code=reservation.code)
 
         else:
             error_message = "Please correct the errors in the form."
@@ -126,18 +129,22 @@ def modify_view(request, code):
     # Fetch the reservation based on the code
     reservation = get_object_or_404(Reservation, code=code)
 
-    # If no authentication in session, redirect to search page
-    if 'authenticated_reservation' not in request.session or request.session['authenticated_reservation'] != code:
-        messages.error(request, "You must verify your email and password before modifying your reservation.")
+    if 'authenticated_reservation' not in request.session or request.session[
+            'authenticated_reservation'] != code:
+        messages.error(
+            request, "You must verify your email and password before "
+            "modifying your reservation.")
         return redirect('reservations:search')
 
-    # Ensure the reservation is active before modification
     if reservation.status != "Active":
         return redirect('reservations:cancel', code=code)
 
     if request.method == 'POST':
-        form_part1 = ReservationPart1Form(request.POST, instance=reservation, current_reservation=reservation)
-        form_part2 = ReservationPart2Form(request.POST, instance=reservation, is_modifying=True)
+        form_part1 = ReservationPart1Form(
+            request.POST, instance=reservation,
+            current_reservation=reservation)
+        form_part2 = ReservationPart2Form(
+            request.POST, instance=reservation, is_modifying=True)
 
         if form_part1.is_valid() and form_part2.is_valid():
             reservation = form_part1.save(commit=False)
@@ -151,8 +158,10 @@ def modify_view(request, code):
             return redirect('reservations:update', code=reservation.code)
 
     else:
-        form_part1 = ReservationPart1Form(instance=reservation, current_reservation=reservation)
-        form_part2 = ReservationPart2Form(instance=reservation, is_modifying=True)
+        form_part1 = ReservationPart1Form(
+            instance=reservation, current_reservation=reservation)
+        form_part2 = ReservationPart2Form(
+            instance=reservation, is_modifying=True)
 
     return render(request, 'reservations/modify.html', {
         'form_part1': form_part1,
@@ -162,9 +171,12 @@ def modify_view(request, code):
 
 
 def check_authentication(request, code):
-    """Helper function to verify if the user is authenticated for a reservation."""
-    if 'authenticated_reservation' not in request.session or request.session['authenticated_reservation'] != code:
-        messages.error(request, "You must verify your email and password before accessing this reservation.")
+    # Helper function to verify if the user is authenticated for a reservation.
+    if 'authenticated_reservation' not in request.session or request.session[
+            'authenticated_reservation'] != code:
+        messages.error(
+            request, "You must verify your email and password before "
+            "accessing this reservation.")
         return False
     return True
 
@@ -179,7 +191,8 @@ def cancel_view(request, code):
     if reservation.status == "Active":
         reservation.status = "Cancelled"
         reservation.save()
-        return render(request, 'reservations/cancel.html', {'reservation': reservation})
+        return render(
+            request, 'reservations/cancel.html', {'reservation': reservation})
 
     return redirect('reservations:details', code=reservation.code)
 
