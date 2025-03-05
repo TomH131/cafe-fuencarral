@@ -38,16 +38,16 @@ h1 {
 }
 
 #login {
-    background-color: rgb(139, 0, 0, 0.2);
+    background-color: rgb(255, 215, 0, 0.9);
     font-size: 85%;
-    color: black;
+    color: darkred;
     margin-top: 1px;
     text-align: right;
 }
 
 #login a {
-    color: black;
-    background-color: rgb(232, 204, 204);
+    color: rgb(85, 26, 139);
+    background-color: rgb(255, 215, 0, 0.9);
     text-decoration: underline;
 }
 
