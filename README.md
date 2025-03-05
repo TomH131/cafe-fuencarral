@@ -130,21 +130,25 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 
 ### Manual testing
 
-All the fields in the form are mandatory, so the form cannot be submitted without all fields being completed. This works for both Part 1 and Part 2 of the form, with an error message showing otherwise.
+All the fields in the form are mandatory, so the form cannot be submitted without all fields being completed. This works for both Part 1 and Part 2 of the form and the search form, with an error message showing otherwise.
 
 If the user selects a date in the past, an error message will let them know this date cannot be selected.
 
-![Date-error](static/images/date-error.png)
+![Date-error](static\images\date-error.png)
 
 There are only **10 tables** in the cafe, so if all tables are already booked at a chosen time and date, an error message will show up after 'Next' is clicked, asking the user to select a different time. The user will also not be able to select a time within a two-hour window of a fully booked slot. For example, if there are 10 reservations at 5 pm, the next available reservation will be at 7 pm. Cancelled reservations do not count towards the 10 reservations. 
 
-![Reservation-error-message](static/images/reservation-error-message.png)
+![Reservation-error-message](static\images\reservation-error-message.png)
 
 In Part 2 of the form, names and email addresses can still be submitted even if spaces are added at the front or end of entries. Submitting names or email addresses in all lowercase or all uppercase will convert them to the proper format. If an email is submitted in an incorrect format, an error message will prompt the correct format.
 
 If the user searches with an incorrect code, they will receive an error message letting them know that the code does not exist. As above, codes submitted with spaces on either side are still accepted. Similarly, codes entered in lowercase are converted to uppercase.
 
 ![Search-error-message](static/images/search-error-message.png)
+
+If the user enters the correct email address and code but the password is wrong they receive an error message informing them that the password they have provided is incorrect.
+
+![Incorrect-password](static\images\incorrect-password.png)
 
 On the modify screen, if the user changes the time or date to a fully booked slot, they will receive an error message, as with a new reservation. If they select a date in the past, they will also receive an error message. If a customer has a reservation in a fully booked time slot, they can adjust their booking, such as moving it half an hour later. In this case, their original reservation will not be counted toward the maximum limit of 10 bookings for any time slot.
 
