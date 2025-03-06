@@ -128,6 +128,92 @@ No errors were found when the CSS code was run through the [Jigsaw Validator](ht
 
 The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). The only errors were blank whitespaces and lines too long. All errors have been fixed.
 
+### User story testing
+
+#### Customers
+
+1. As a customer I want to book a table at a specific time and date so that I can guarantee a table at the cafe when I arrive.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Select number of people from the dropdown | Number selected will appear | Works as expected |
+| Select date from the widget | Date selected will appear | Works as expected |
+| Select time from the dropdown | Time selected will appear | Works as expected |
+| Click 'Next' | Part 2 of the form will open | Works as expected |
+| Input first name | First name will appear | Works as expected |
+| Input last name | Last name will appear | Works as expected |
+| Input email address | Email address will appear | Works as expected |
+| Input password | Password will appear but hashed | Works as expected |
+| Click 'Submit' | Reservation confirmation will appear | Works as expected |
+
+2. As a customer I want to modify an existing reservation so that I can easily make changes.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Click "here" on the "Reservations" page to modify | Will be taken to the "search" page | Works as expected |
+| Input your email address | Email address will appear | Works as expected |
+| Input password | Password will appear but hashed | Works as expected |
+| Input reservation code | Reservation code will appear | Works as expected |
+| Click "Search" | Will be taken to the "details" page | Works as expected |
+| Click "Modify" | Will be taken to the "modify" page | Works as expected |
+| Make any changes to any of the fields | Changed fields will appear changed | Works as expected |
+| Click "Update" | Any changes will be saved and redirected to the "update" page | Works as expected |
+
+3. As a customer I want to be able to cancel my reservation so that I can easily let the cafe know I won't be coming.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Click "here" on the "Reservations" page to modify | Will be taken to the "search" page | Works as expected |
+| Input your email address | Email address will appear | Works as expected |
+| Input password | Password will appear but hashed | Works as expected |
+| Input reservation code | Reservation code will appear | Works as expected |
+| Click "Search" | Will be taken to the "details" page | Works as expected |
+| Click "Cancel" | Will be taken to the "cancel" page and see confirmation of cancellation | Works as expected |
+
+4. As a customer I want to safely share my name and email address so that they remain secure and inaccessible to other customers.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Information is shared on the "admin" page which is accessible only to the admin user | Information is password protected | Works as expected |
+
+5. As a customer I want to be the only one to access my reservation so that other customers can't modify or cancel my booking.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Bookings are secured behind a reservation code and email and password provided by the user | Bookings cannot be viewed without login details | Works as expected |
+| Bookings cannot be accessed via URL | Users not logged in will be redirected to the login page | Works as expected |
+| Logged in users can view their reservation only | The only reservation details showed match the login details and code | Works as expected |
+
+6. As a customer I want to see the cafe's menu so that I know what food and drinks they have on offer.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Click on "Menu" in the navbar | The "Menu" page will open where all the food and drink items are displayed | Works as expected |
+
+#### Restaurant Manager
+
+7. As a restaurant manager I want to view reservations so that I know how many customers are arriving at a given time on a given day.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Log in to the "admin" site with the admin login details | The "admin" page will open | Works as expected |
+| Click on "Reservations"  | A list of the reservations will appear | Works as expected |
+| Use the filter options on the right | This will only display the bookings in a given timeframe | Works as expected |
+
+8. As a restaurant manager I want to see cancellations so that I can better service the cafe and other customers can book the new free slot.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| Log in to the "admin" site with the admin login details | The "admin" page will open | Works as expected |
+| Click on "Reservations"  | A list of the reservations will appear | Works as expected |
+| Using the filter options click on "Cancelled" | This will only display cancelled bookings | Works as expected |
+
+9. As a restaurant manager I want to be the only one able to view all reservations so that customer details remain protected and other reservations stay confidential.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+| All reservations are saved on the admin site which is accessible only to the admin user  | Information is password protected and confidential | Works as expected |
+
 ### Manual testing
 
 All the fields in the form are mandatory, so the form cannot be submitted without all fields being completed. This works for both Part 1 and Part 2 of the form and the search form, with an error message showing otherwise.
