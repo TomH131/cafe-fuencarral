@@ -7,7 +7,7 @@ This website is designed for people in Bristol, whether residents or visitors, w
 ### Customers
 
  - As a customer I want to book a table at a specific time and date so that I can guarantee a table at the cafe when I arrive.
- - As a customer I want to modify an existing reservation so that I can easily make changes.
+ - As a customer I want to make changes to my reservation online so that I don't have to call up
  - As a customer I want to be able to cancel my reservation so that I can easily let the cafe know I won't be coming.
  - As a customer I want to safely share my name and email address so that they remain secure and inaccessible to other customers.
  - As a customer I want to be the only one to access my reservation so that other customers can't modify or cancel my booking.
@@ -136,6 +136,7 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
+| Click on "Reservations" in the navbar | Takes you to the "Reservations" page | Works as expected |
 | Select number of people from the dropdown | Number selected will appear | Works as expected |
 | Select date from the widget | Date selected will appear | Works as expected |
 | Select time from the dropdown | Time selected will appear | Works as expected |
@@ -146,24 +147,26 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 | Input password | Password will appear but hashed | Works as expected |
 | Click 'Submit' | Reservation confirmation will appear | Works as expected |
 
-2. As a customer I want to modify an existing reservation so that I can easily make changes.
+2. As a customer I want to make changes to my reservation online so that I don't have to call up
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
-| Click "here" on the "Reservations" page to modify | Will be taken to the "search" page | Works as expected |
+| Click on "Reservations" in the navbar | Takes you to the "Reservations" page | Works as expected |
+| Click "here" on the bottom box to modify | Will be taken to the "search" page | Works as expected |
 | Input your email address | Email address will appear | Works as expected |
 | Input password | Password will appear but hashed | Works as expected |
 | Input reservation code | Reservation code will appear | Works as expected |
 | Click "Search" | Will be taken to the "details" page | Works as expected |
 | Click "Modify" | Will be taken to the "modify" page | Works as expected |
 | Make any changes to any of the fields | Changed fields will appear changed | Works as expected |
-| Click "Update" | Any changes will be saved and redirected to the "update" page | Works as expected |
+| Click "Update" | Any changes will be saved and redirected to the "update" page with confirmation | Works as expected |
 
 3. As a customer I want to be able to cancel my reservation so that I can easily let the cafe know I won't be coming.
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
-| Click "here" on the "Reservations" page to modify | Will be taken to the "search" page | Works as expected |
+| Click on "Reservations" in the navbar | Takes you to the "Reservations" page | Works as expected |
+| Click "here" on the bottom box to modify | Will be taken to the "search" page | Works as expected |
 | Input your email address | Email address will appear | Works as expected |
 | Input password | Password will appear but hashed | Works as expected |
 | Input reservation code | Reservation code will appear | Works as expected |
@@ -180,9 +183,9 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
-| Bookings are secured behind a reservation code and email and password provided by the user | Bookings cannot be viewed without login details | Works as expected |
+| Bookings are secured behind a reservation code, email and password provided by the user | Bookings cannot be viewed without login details | Works as expected |
 | Bookings cannot be accessed via URL | Users not logged in will be redirected to the login page | Works as expected |
-| Logged in users can view their reservation only | The only reservation details showed match the login details and code | Works as expected |
+| Logged in users can view only their reservation | The only reservation details showed match the login details and code | Works as expected |
 
 6. As a customer I want to see the cafe's menu so that I know what food and drinks they have on offer.
 
@@ -196,6 +199,7 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
+| Go to the following web page https://cafe-fuencarral-fbc8f9e22845.herokuapp.com/admin/ | You will be taken to the login page | Works as expected |
 | Log in to the "admin" site with the admin login details | The "admin" page will open | Works as expected |
 | Click on "Reservations"  | A list of the reservations will appear | Works as expected |
 | Use the filter options on the right | This will only display the bookings in a given timeframe | Works as expected |
@@ -204,6 +208,7 @@ The code was put through the [CI Python Linter](https://pep8ci.herokuapp.com/). 
 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
+| Go to the following web page https://cafe-fuencarral-fbc8f9e22845.herokuapp.com/admin/ | You will be taken to the login page | Works as expected |
 | Log in to the "admin" site with the admin login details | The "admin" page will open | Works as expected |
 | Click on "Reservations"  | A list of the reservations will appear | Works as expected |
 | Using the filter options click on "Cancelled" | This will only display cancelled bookings | Works as expected |
