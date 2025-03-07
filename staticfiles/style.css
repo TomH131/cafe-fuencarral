@@ -37,6 +37,20 @@ h1 {
     background-color: darkred;
 }
 
+#login {
+    background-color: rgb(255, 215, 0, 0.9);
+    font-size: 85%;
+    color: darkred;
+    margin-top: 1px;
+    text-align: right;
+}
+
+#login a {
+    color: rgb(85, 26, 139);
+    background-color: rgb(255, 215, 0, 0.9);
+    text-decoration: underline;
+}
+
 header a {
     text-decoration: none;
     color: gold;
@@ -61,7 +75,7 @@ header a {
 
 /* Main content */
 .box {
-    background-color: gold;
+    background-color: rgb(255, 215, 0, 0.9);
     padding: 10px;
     border-radius: 5%;
     text-align: center;
@@ -75,7 +89,7 @@ p {
 }
 
 .images {
-    background-color: gold;
+    background-color: rgb(255, 215, 0, 0.9);
     padding: 10px;
 }
 
@@ -214,6 +228,10 @@ footer a {
 
     header a {
         font-size: 140%;
+    }
+
+    #login a {
+        font-size: 13.6px;
     }
 
     .box {
